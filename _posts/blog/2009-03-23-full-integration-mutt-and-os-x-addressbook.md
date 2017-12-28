@@ -7,10 +7,7 @@ permalink: /content/full-integration-mutt-and-os-x-addressbook
 ---
 
 
-
 http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/add\_address.sh\_.txt
-
-
 
 
 So, my experiments with mutt continue. Incidentally, if you think that
@@ -36,21 +33,6 @@ existing record with the same name, and add the address to that, or
 create a new record if necessary. You will also be prompted to pick a
 label from those currently in use in your addressbook.
 
-
-
-1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    macro index,pager A [\"\<pipe-message\>/opt/local/bin/lbdb-fetchaddr
-    -x from -d
-    \'\'\<return\>\<shell-escape\>[\$HOME]{style="color: #007800;"}/bin/add\_address.sh\<return\>\"]{style="color: #ff0000;"}
-    [\"add the sender address to os x
-    addressbook\"]{style="color: #ff0000;"}
-    :::
-
-
-
-
-
-
-
-
-
+``` bash
+macro index,pager A "<pipe-message>/opt/local/bin/lbdb-fetchaddr -x from -d ''<return><shell-escape>$HOME/bin/add_address.sh<return>" "add the sender address to os x addressbook"
+```

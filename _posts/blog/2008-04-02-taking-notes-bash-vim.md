@@ -35,219 +35,49 @@ how I did it.
 The bash file to do the above looks like this:
 
 
-
-1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    note[(]{style="color: #7a0874; font-weight: bold;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [{]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-2.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      [if]{style="color: #000000; font-weight: bold;"}
-    [\[]{style="color: #7a0874; font-weight: bold;"}
-    [-n]{style="color: #660033;"} [\"\$\*\"]{style="color: #ff0000;"}
-    [\]]{style="color: #7a0874; font-weight: bold;"};
-    [then]{style="color: #000000; font-weight: bold;"}
-    :::
-
-3.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-        mvim [-o2]{style="color: #660033;"}
-    [\"[\$HOME]{style="color: #007800;"}/.notes/\$\*.note\"]{style="color: #ff0000;"}
-    [\"[\$HOME]{style="color: #007800;"}/.notes/\$\*.tags\"]{style="color: #ff0000;"}
-    :::
-
-4.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      [else]{style="color: #000000; font-weight: bold;"}
-    :::
-
-5.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-        [printf]{style="color: #7a0874; font-weight: bold;"} [\"Name of
-    note is a required
-    argument.[\\n]{style="color: #000099; font-weight: bold;"}\"]{style="color: #ff0000;"}
-    :::
-
-6.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      [fi]{style="color: #000000; font-weight: bold;"}
-    :::
-
-7.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [}]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-8.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-9.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    findnote[(]{style="color: #7a0874; font-weight: bold;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [{]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-10. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      ack [-ia]{style="color: #660033;"} [\$1]{style="color: #007800;"}
-    \~[/]{style="color: #000000; font-weight: bold;"}.notes[/\*]{style="color: #000000; font-weight: bold;"}.note
-    :::
-
-11. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [}]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-12. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-13. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    shownote[(]{style="color: #7a0874; font-weight: bold;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [{]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-14. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      [cat]{style="color: #c20cb9; font-weight: bold;"}
-    [\"[\$HOME]{style="color: #007800;"}/.notes/\$\*.note\"]{style="color: #ff0000;"}
-    :::
-
-15. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [}]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-16. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-17. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    findtag[(]{style="color: #7a0874; font-weight: bold;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [{]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-18. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      ack [-ia]{style="color: #660033;"} [\$1]{style="color: #007800;"}
-    \~[/]{style="color: #000000; font-weight: bold;"}.notes[/\*]{style="color: #000000; font-weight: bold;"}.tags
-    :::
-
-19. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [}]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-20. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-21. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    copynote[(]{style="color: #7a0874; font-weight: bold;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [{]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-22. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      [cat]{style="color: #c20cb9; font-weight: bold;"}
-    [\"[\$HOME]{style="color: #007800;"}/.notes/\$\*.note\"]{style="color: #ff0000;"}
-    [\|]{style="color: #000000; font-weight: bold;"} pbcopy
-    :::
-
-23. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [}]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-24. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-25. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [alias]{style="color: #7a0874; font-weight: bold;"}
-    note:=[\'note\']{style="color: #ff0000;"}
-    :::
-
-26. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [alias]{style="color: #7a0874; font-weight: bold;"}
-    shownote:=[\'shownote\']{style="color: #ff0000;"}
-    :::
-
-27. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [alias]{style="color: #7a0874; font-weight: bold;"}
-    [notes]{style="color: #007800;"}=[\"mvim -c
-    [\\\"]{style="color: #000099; font-weight: bold;"}let
-    g:netrw\_list\_hide=\'\\.tags\$,\^\\..\*\'[\\\"]{style="color: #000099; font-weight: bold;"}
-    -c [\\\"]{style="color: #000099; font-weight: bold;"}let
-    g:netrw\_hide=1[\\\"]{style="color: #000099; font-weight: bold;"}
-    [\$HOME]{style="color: #007800;"}/.notes\"]{style="color: #ff0000;"}
-    :::
-
-28. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-29. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    \_notes[(]{style="color: #7a0874; font-weight: bold;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [{]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-30. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      [local]{style="color: #7a0874; font-weight: bold;"} cur names IFS
-    :::
-
-31. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-32. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    [cur]{style="color: #007800;"}=[\"[\${COMP\_WORDS\[COMP\_CWORD\]}]{style="color: #007800;"}\"]{style="color: #ff0000;"}
-    :::
-
-33. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    [names]{style="color: #007800;"}=[\`]{style="color: #000000; font-weight: bold;"}[ls]{style="color: #c20cb9; font-weight: bold;"}
-    [\$HOME]{style="color: #007800;"}[/]{style="color: #000000; font-weight: bold;"}.notes
-    [\|]{style="color: #000000; font-weight: bold;"}
-    [sed]{style="color: #c20cb9; font-weight: bold;"}
-    [\'s/.note\$//g\']{style="color: #ff0000;"}[\`]{style="color: #000000; font-weight: bold;"}
-    :::
-
-34. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    [IFS]{style="color: #007800;"}=\$[\'\\t\\n\']{style="color: #ff0000;"}
-    :::
-
-35. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-36. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    [COMPREPLY]{style="color: #007800;"}=[(]{style="color: #7a0874; font-weight: bold;"}
-    \$[(]{style="color: #7a0874; font-weight: bold;"}[compgen]{style="color: #7a0874; font-weight: bold;"}
-    [-W]{style="color: #660033;"}
-    [\"[\${names}]{style="color: #007800;"}\"]{style="color: #ff0000;"}
-    [\--]{style="color: #660033;"}
-    [\${cur}]{style="color: #800000;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [)]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-37. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-      [return]{style="color: #7a0874; font-weight: bold;"}
-    [0]{style="color: #000000;"}
-    :::
-
-38. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [}]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-39. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [complete]{style="color: #7a0874; font-weight: bold;"}
-    [-o]{style="color: #660033;"} nospace [-F]{style="color: #660033;"}
-    \_notes note
-    :::
-
-40. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [complete]{style="color: #7a0874; font-weight: bold;"}
-    [-o]{style="color: #660033;"} nospace [-F]{style="color: #660033;"}
-    \_notes note:
-    :::
-
-41. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [complete]{style="color: #7a0874; font-weight: bold;"}
-    [-o]{style="color: #660033;"} nospace [-F]{style="color: #660033;"}
-    \_notes copynote
-    :::
-
+``` bash
+note() {
+  if [ -n "$*" ]; then
+    mvim -o2 "$HOME/.notes/$*.note" "$HOME/.notes/$*.tags"
+  else
+    printf "Name of note is a required argument.\n"
+  fi
+}
+ 
+findnote() {
+  ack -ia $1 ~/.notes/*.note
+}
+ 
+shownote() {
+  cat "$HOME/.notes/$*.note"
+}
+ 
+findtag() {
+  ack -ia $1 ~/.notes/*.tags
+}
+ 
+copynote() {
+  cat "$HOME/.notes/$*.note" | pbcopy
+}
+ 
+alias note:='note'
+alias shownote:='shownote'
+alias notes="mvim -c \"let g:netrw_list_hide='\.tags$,^\..*'\" -c \"let g:netrw_hide=1\" $HOME/.notes"
+ 
+_notes() {
+  local cur names IFS
+ 
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  names=`ls $HOME/.notes | sed 's/.note$//g'`
+  IFS=$'\t\n'
+ 
+  COMPREPLY=( $(compgen -W "${names}" -- ${cur}) )
+  return 0
+}
+complete -o nospace -F _notes note
+complete -o nospace -F _notes note:
+complete -o nospace -F _notes copynote
+```
 
 
 Now, here\'s the other piece. Put this in your .vimrc:

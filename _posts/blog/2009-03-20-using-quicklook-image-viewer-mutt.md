@@ -6,8 +6,6 @@ categories: ["mac os x", "mutt", "email", "imap"]
 permalink: /content/using-quicklook-image-viewer-mutt
 ---
 
-
-
 So, I\'m wavering between email clients yet again - giving the
 [mutt](http://www.mutt.org/)+[isync](http://isync.sourceforge.net/)
 combination a try this time\... Mutt\'s disconnected imap support is
@@ -22,54 +20,20 @@ quick wrapper script to provide mutt with a 0 exit status instead of the
 from spitting out the \'press any key to continue\' message and
 requiring an EXTRA KEYSTROKE. (picky, picky\...)
 
-
-
-1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [\#!/bin/bash]{style="color: #666666; font-style: italic;"}
-    :::
-
-2.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [QLFILE]{style="color: #007800;"}=[\$1]{style="color: #007800;"}
-    :::
-
-3.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-4.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [\# we have to trap ctrl-c so that a successful exit signal will be
-    given,]{style="color: #666666; font-style: italic;"}
-    :::
-
-5.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [\# so that mutt won\'t prompt us to press any key to
-    continue]{style="color: #666666; font-style: italic;"}
-    :::
-
-6.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [trap]{style="color: #7a0874; font-weight: bold;"} [\'exit
-    0\']{style="color: #ff0000;"} [2]{style="color: #000000;"} [\#traps
-    Ctrl-C (signal 2)]{style="color: #666666; font-style: italic;"}
-    :::
-
-7.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-8.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    qlmanage [-p]{style="color: #660033;"}
-    [\$QLFILE]{style="color: #007800;"}
-    [\>&]{style="color: #000000; font-weight: bold;"}
-    [/]{style="color: #000000; font-weight: bold;"}dev[/]{style="color: #000000; font-weight: bold;"}null
-    :::
-
+``` bash
+#!/bin/bash
+QLFILE=$1
+ 
+# we have to trap ctrl-c so that a successful exit signal will be given,
+# so that mutt won't prompt us to press any key to continue
+trap 'exit 0' 2 #traps Ctrl-C (signal 2)
+ 
+qlmanage -p $QLFILE >& /dev/null
+```
 
 
 A little adjustment in \~/.mailcap, and away you go\... Here\'s an
 example of one of the very important images that it\'s vital I see in my
 email:
 ![](http://reluctanthacker.rollett.org/sites/default/files/Picture35.png)
-
-
-
 

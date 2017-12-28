@@ -16,30 +16,9 @@ completion and
 quite nice. Also did my own hacky perversion of the :make command.
 .vimrc excerpt follows\...
 
-
-
-1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [\" py stuff]{style="color: #ff0000;"}
-    :::
-
-2.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [autocmd BufRead \*.py set smartindent
-    cinwords=if,elif,else,for,while,try,except,finally,def,class
-     ]{style="color: #ff0000;"}
-    :::
-
-3.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [autocmd FileType python set
-    omnifunc=pythoncomplete\#Complete]{style="color: #ff0000;"}
-    :::
-
-4.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [autocmd FileType python set makeprg=python\\ %
-    ]{style="color: #ff0000;"}
-    :::
-
-
-
-
-
-
+``` viml
+" py stuff
+autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType python set makeprg=python\ %
+```

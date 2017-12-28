@@ -19,67 +19,19 @@ applescript was harder to figure out than it perhaps should have been,
 so here it is in the hopes that it will help someone.
 
 
-
-1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    tell application [\"Mail\"]{style="color: #ff0000;"}
-    :::
-
-2.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-            [set]{style="color: #000000; font-weight: bold;"} the
-    selected mailboxes of the front message viewer to
-    [{]{style="color: #7a0874; font-weight: bold;"}mailbox
-    [\"INBOX\"]{style="color: #ff0000;"} of account
-    [\"Gmail\"]{style="color: #ff0000;"}[}]{style="color: #7a0874; font-weight: bold;"}
-    :::
-
-3.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-            delay [0.1]{style="color: #000000;"}
-    :::
-
-4.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-            [set]{style="color: #000000; font-weight: bold;"}
-    no\_selected to get count selection
-    :::
-
-5.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    end tell
-    :::
-
-6.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-     
-    :::
-
-7.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    [if]{style="color: #000000; font-weight: bold;"}
-    [(]{style="color: #7a0874; font-weight: bold;"}no\_selected is equal
-    to
-    [0]{style="color: #000000;"}[)]{style="color: #7a0874; font-weight: bold;"}
-    [then]{style="color: #000000; font-weight: bold;"}
-    :::
-
-8.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-            tell application [\"System
-    Events\"]{style="color: #ff0000;"}
-    :::
-
-9.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-                    [set]{style="color: #000000; font-weight: bold;"}
-    selected of row [-1]{style="color: #660033;"} of table
-    [1]{style="color: #000000;"} of scroll area
-    [1]{style="color: #000000;"} of splitter group
-    [2]{style="color: #000000;"} of window [1]{style="color: #000000;"}
-    of application process [\"Mail\"]{style="color: #ff0000;"} to
-    [true]{style="color: #c20cb9; font-weight: bold;"}
-    :::
-
-10. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-            end tell
-    :::
-
-11. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
-    end [if]{style="color: #000000; font-weight: bold;"}
-    :::
-
+``` applescript
+tell application "Mail"
+        set the selected mailboxes of the front message viewer to {mailbox "INBOX" of account "Gmail"}
+        delay 0.1
+        set no_selected to get count selection
+end tell
+ 
+if (no_selected is equal to 0) then
+        tell application "System Events"
+                set selected of row -1 of table 1 of scroll area 1 of splitter group 2 of window 1 of application process "Mail" to true
+        end tell
+end if
+```
 
 
 Paste the script into Script Editor.app, change Gmail to whatever you
