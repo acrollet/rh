@@ -2,7 +2,7 @@
 layout: post
 title: "Editing python with Vim"
 date: 2009-02-22 04:38:28 +0000
-categories: ["python", "vim", "coding"]
+tags: ["python", "vim", "coding"]
 permalink: /content/editing-python-vim
 ---
 

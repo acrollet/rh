@@ -2,7 +2,7 @@
 layout: post
 title: "Drupal BlogAPI client - new version"
 date: 2009-01-27 22:31:13 +0000
-categories: ["drupal", "xmlrpc", "vim", "blogapi"]
+tags: ["drupal", "xmlrpc", "vim", "blogapi"]
 permalink: /drupal-blogapi-client-new-version
 ---
 

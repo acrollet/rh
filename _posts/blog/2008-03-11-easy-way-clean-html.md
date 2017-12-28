@@ -2,7 +2,7 @@
 layout: post
 title: "easy way to clean up html"
 date: 2008-03-11 02:37:01 +0000
-categories: ["html", "perl", "bash", "shell scripting"]
+tags: ["html", "perl", "bash", "shell scripting"]
 permalink: /easy-way-clean-html
 ---
 

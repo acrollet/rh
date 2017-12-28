@@ -2,7 +2,7 @@
 layout: post
 title: "Morrison\'s Corn-Kits"
 date: 2010-09-25 02:36:25 +0000
-categories: ["photography", "denton", "grain bin", "iphone"]
+tags: ["photography", "denton", "grain bin", "iphone"]
 permalink: /morrisons-corn-kits
 ---
 

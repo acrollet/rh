@@ -2,7 +2,7 @@
 layout: post
 title: "Thoughts on David Weinberger\'s drupalcon keynote today"
 date: 2009-03-05 16:33:05 +0000
-categories: ["drupal", "philosophy", "morality"]
+tags: ["drupal", "philosophy", "morality"]
 permalink: /content/thoughts-david-weinbergers-drupalcon-keynote-today
 ---
 

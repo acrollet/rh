@@ -2,7 +2,7 @@
 layout: post
 title: "Strange networking problems after disk copy"
 date: 2009-05-05 03:30:14 +0000
-categories: ["mac os x", "networking", "little snitch"]
+tags: ["mac os x", "networking", "little snitch"]
 permalink: /content/strange-networking-problems-after-disk-copy
 ---
 

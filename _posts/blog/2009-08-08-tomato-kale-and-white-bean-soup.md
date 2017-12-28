@@ -2,7 +2,7 @@
 layout: post
 title: "Tomato, Kale and White Bean Soup"
 date: 2009-08-08 01:44:18 +0000
-categories: ["cooking", "vegetables", "health"]
+tags: ["cooking", "vegetables", "health"]
 permalink: /content/tomato-kale-and-white-bean-soup
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Fondue Sauce for Pasta"
 date: 2009-03-30 02:29:30 +0000
-categories: ["cooking", "pasta", "cheese"]
+tags: ["cooking", "pasta", "cheese"]
 permalink: /content/fondue-sauce-pasta
 ---
 

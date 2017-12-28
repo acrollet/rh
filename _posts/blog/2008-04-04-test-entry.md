@@ -2,7 +2,7 @@
 layout: post
 title: "This is a test entry"
 date: 2008-04-04 05:59:22 +0000
-categories: ["drupal", "python", "vim"]
+tags: ["drupal", "python", "vim"]
 permalink: /content/test-entry
 ---
 

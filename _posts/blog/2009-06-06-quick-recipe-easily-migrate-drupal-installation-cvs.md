@@ -2,7 +2,7 @@
 layout: post
 title: "Quick recipe to easily migrate a drupal installation to CVS"
 date: 2009-06-06 23:15:46 +0000
-categories: ["drupal", "bash", "drush", "cvs"]
+tags: ["drupal", "bash", "drush", "cvs"]
 permalink: /content/quick-recipe-easily-migrate-drupal-installation-cvs
 ---
 

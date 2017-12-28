@@ -2,7 +2,7 @@
 layout: post
 title: "Creating a regex for finding credit card numbers with grep"
 date: 2008-04-18 20:33:44 +0000
-categories: []
+tags: []
 permalink: /creating-regex-finding-credit-card-numbers-grep
 ---
 

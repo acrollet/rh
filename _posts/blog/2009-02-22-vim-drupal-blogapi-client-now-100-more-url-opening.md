@@ -2,7 +2,7 @@
 layout: post
 title: "Vim Drupal BlogAPI client - now with 100% more url opening!"
 date: 2009-02-22 05:49:28 +0000
-categories: ["drupal", "vim"]
+tags: ["drupal", "vim"]
 permalink: /content/vim-drupal-blogapi-client-now-100-more-url-opening
 ---
 

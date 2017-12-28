@@ -2,7 +2,7 @@
 layout: post
 title: "recommended for Safari - ClickToFlash "
 date: 2009-02-24 18:33:55 +0000
-categories: ["safari", "flash", "adblock"]
+tags: ["safari", "flash", "adblock"]
 permalink: /content/recommended-safari-clicktoflash
 ---
 

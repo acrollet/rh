@@ -2,7 +2,7 @@
 layout: post
 title: "Vimafarian"
 date: 2009-02-25 04:32:41 +0000
-categories: ["vim", "safari", "vimperator", "javascript", "js"]
+tags: ["vim", "safari", "vimperator", "javascript", "js"]
 permalink: /content/vimafarian
 ---
 

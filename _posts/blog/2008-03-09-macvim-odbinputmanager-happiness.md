@@ -2,7 +2,7 @@
 layout: post
 title: "MacVim + ODBInputManager == happiness"
 date: 2008-03-09 05:42:20 +0000
-categories: []
+tags: []
 permalink: /macvim-odbinputmanager-happiness
 ---
 

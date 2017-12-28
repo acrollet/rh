@@ -2,7 +2,7 @@
 layout: post
 title: "taking notes with bash + vim"
 date: 2008-04-02 02:55:45 +0000
-categories: ["bash", "note", "vim"]
+tags: ["bash", "note", "vim"]
 permalink: /content/taking-notes-bash-vim
 ---
 

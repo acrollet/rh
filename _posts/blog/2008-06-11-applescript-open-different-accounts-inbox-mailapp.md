@@ -2,7 +2,7 @@
 layout: post
 title: "Applescript to open a different account\'s INBOX in Mail.app"
 date: 2008-06-11 02:02:25 +0000
-categories: ["mac os x", "mail.app", "applescript"]
+tags: ["mac os x", "mail.app", "applescript"]
 permalink: /applescript-open-different-accounts-inbox-mailapp
 ---
 

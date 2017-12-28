@@ -2,7 +2,7 @@
 layout: post
 title: "Using quicklook as an image viewer for mutt"
 date: 2009-03-20 02:53:02 +0000
-categories: ["mac os x", "mutt", "email", "imap"]
+tags: ["mac os x", "mutt", "email", "imap"]
 permalink: /content/using-quicklook-image-viewer-mutt
 ---
 

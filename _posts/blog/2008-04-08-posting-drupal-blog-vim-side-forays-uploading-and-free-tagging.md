@@ -2,7 +2,7 @@
 layout: post
 title: "Posting to a drupal blog from Vim (with side forays into uploading and free tagging)"
 date: 2008-04-08 05:08:25 +0000
-categories: ["drupal", "python", "xmlrpc", "vim"]
+tags: ["drupal", "python", "xmlrpc", "vim"]
 permalink: /content/posting-drupal-blog-vim-side-forays-uploading-and-free-tagging
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Tlingit Totem"
 date: 2010-07-18 20:07:03 +0000
-categories: ["photography", "indigenous", "art"]
+tags: ["photography", "indigenous", "art"]
 permalink: /tlingit-totem
 ---
 

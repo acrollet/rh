@@ -2,7 +2,7 @@
 layout: post
 title: "google maps is not perfect..."
 date: 2009-03-06 22:36:57 +0000
-categories: []
+tags: []
 permalink: /content/google-maps-not-perfect
 ---
 

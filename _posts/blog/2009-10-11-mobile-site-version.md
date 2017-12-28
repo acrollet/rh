@@ -2,7 +2,7 @@
 layout: post
 title: "mobile site version"
 date: 2009-10-11 02:30:38 +0000
-categories: ["safari", "javascript", "apple", "rss"]
+tags: ["safari", "javascript", "apple", "rss"]
 permalink: /mobile-site-version
 ---
 

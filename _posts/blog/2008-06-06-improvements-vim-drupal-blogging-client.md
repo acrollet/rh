@@ -2,7 +2,7 @@
 layout: post
 title: "Improvements to the Vim drupal blogging client "
 date: 2008-06-06 14:33:58 +0000
-categories: ["drupal", "python", "xmlrpc", "vim"]
+tags: ["drupal", "python", "xmlrpc", "vim"]
 permalink: /improvements-vim-drupal-blogging-client
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Full integration of mutt and the OS X Addressbook"
 date: 2009-03-23 03:51:34 +0000
-categories: ["mac os x", "applescript", "mutt", "email", "imap", "addressbook", "lbdb"]
+tags: ["mac os x", "applescript", "mutt", "email", "imap", "addressbook", "lbdb"]
 permalink: /content/full-integration-mutt-and-os-x-addressbook
 ---
 

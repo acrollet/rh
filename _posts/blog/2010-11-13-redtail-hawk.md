@@ -2,7 +2,7 @@
 layout: post
 title: "Redtail Hawk"
 date: 2010-11-13 19:09:12 +0000
-categories: []
+tags: []
 permalink: /redtail-hawk
 ---
 

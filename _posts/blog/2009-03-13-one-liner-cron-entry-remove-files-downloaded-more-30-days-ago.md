@@ -2,7 +2,7 @@
 layout: post
 title: "one-liner cron entry to remove files downloaded more than 30 days ago "
 date: 2009-03-13 18:16:17 +0000
-categories: ["shell scripting", "unix", "cron"]
+tags: ["shell scripting", "unix", "cron"]
 permalink: /content/one-liner-cron-entry-remove-files-downloaded-more-30-days-ago
 ---
 

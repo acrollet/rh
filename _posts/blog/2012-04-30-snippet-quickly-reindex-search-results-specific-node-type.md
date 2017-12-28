@@ -2,7 +2,7 @@
 layout: post
 title: "Snippet to quickly (re)index search results for a specific node type"
 date: 2012-04-30 22:32:47 +0000
-categories: ["drupal", "coding"]
+tags: ["drupal", "coding"]
 permalink: /snippet-quickly-reindex-search-results-specific-node-type
 ---
 

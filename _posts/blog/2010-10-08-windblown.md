@@ -2,7 +2,7 @@
 layout: post
 title: "Windblown"
 date: 2010-10-08 03:45:14 +0000
-categories: ["photography", "hiking"]
+tags: ["photography", "hiking"]
 permalink: /windblown
 ---
 

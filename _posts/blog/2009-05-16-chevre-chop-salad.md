@@ -2,7 +2,7 @@
 layout: post
 title: "Chevre chop salad"
 date: 2009-05-16 03:15:38 +0000
-categories: ["cooking", "recipes", "salad"]
+tags: ["cooking", "recipes", "salad"]
 permalink: /content/chevre-chop-salad
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Gyazmail - love child of Mail.app and mutt?"
 date: 2008-03-04 05:12:22 +0000
-categories: []
+tags: []
 permalink: /gyazmail-love-child-mailapp-and-mutt
 ---
 

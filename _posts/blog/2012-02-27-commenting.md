@@ -2,7 +2,7 @@
 layout: post
 title: "Commenting"
 date: 2012-02-27 02:29:36 +0000
-categories: ["administrivia"]
+tags: ["administrivia"]
 permalink: /commenting
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Changing the oil"
 date: 2009-02-19 13:39:52 +0000
-categories: ["real life", "cars", "maintenance"]
+tags: ["real life", "cars", "maintenance"]
 permalink: /changing-oil
 ---
 

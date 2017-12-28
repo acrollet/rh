@@ -2,7 +2,7 @@
 layout: post
 title: "miscellaneous shell-fu"
 date: 2009-02-24 04:31:26 +0000
-categories: ["bash", "shell scripting"]
+tags: ["bash", "shell scripting"]
 permalink: /content/miscellaneous-shell-fu
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "more on gyazmail"
 date: 2008-03-08 00:50:06 +0000
-categories: []
+tags: []
 permalink: /more-gyazmail
 ---
 

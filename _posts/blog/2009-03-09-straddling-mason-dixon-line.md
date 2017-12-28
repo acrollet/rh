@@ -2,7 +2,7 @@
 layout: post
 title: "Straddling the Mason-Dixon line..."
 date: 2009-03-09 23:42:28 +0000
-categories: []
+tags: []
 permalink: /content/straddling-mason-dixon-line
 ---
 

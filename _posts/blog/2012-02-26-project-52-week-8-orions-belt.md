@@ -2,7 +2,7 @@
 layout: post
 title: "Project 52 - week 8: Orion\'s Belt"
 date: 2012-02-26 04:38:35 +0000
-categories: ["photography", "astrophotography", "astronomy"]
+tags: ["photography", "astrophotography", "astronomy"]
 permalink: /project-52-week-8-orions-belt
 ---
 

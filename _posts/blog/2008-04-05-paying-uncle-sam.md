@@ -2,7 +2,7 @@
 layout: post
 title: "Paying Uncle Sam"
 date: 2008-04-05 17:39:37 +0000
-categories: ["real life"]
+tags: ["real life"]
 permalink: /paying-uncle-sam
 ---
 

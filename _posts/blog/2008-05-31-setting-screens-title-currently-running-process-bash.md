@@ -2,7 +2,7 @@
 layout: post
 title: "Setting Screen\'s title to the currently running process with bash"
 date: 2008-05-31 16:49:54 +0000
-categories: ["bash", "screen", "gnu screen", "shell scripting", "system administration"]
+tags: ["bash", "screen", "gnu screen", "shell scripting", "system administration"]
 permalink: /setting-screens-title-currently-running-process-bash
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Setting up nagios3 to send prowl notifications"
 date: 2009-07-14 22:12:49 +0000
-categories: ["perl", "bash", "debian", "prowl", "nagios"]
+tags: ["perl", "bash", "debian", "prowl", "nagios"]
 permalink: /content/setting-nagios3-send-prowl-notifications
 ---
 

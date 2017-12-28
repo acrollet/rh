@@ -2,7 +2,7 @@
 layout: post
 title: "Indian Paintbrush"
 date: 2009-04-17 02:14:49 +0000
-categories: ["photography", "biking"]
+tags: ["photography", "biking"]
 permalink: /content/indian-paintbrush
 ---
 
