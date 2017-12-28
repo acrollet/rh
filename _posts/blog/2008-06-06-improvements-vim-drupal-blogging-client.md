@@ -5,9 +5,9 @@ date: 2008-06-06 14:33:58 +0000
 categories: ["drupal", "python", "xmlrpc", "vim"]
 permalink: /improvements-vim-drupal-blogging-client
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 I\'ve made a few improvements to my Drupal blogging client, first spoken
 about [here](http://reluctanthacker.rollett.org/node/25). It now has the
 ability to publish and unpublish posts, delete posts, and create and
@@ -39,7 +39,7 @@ As before, you will need to apply add1sun\'s patch from
 <http://drupal.org/node/224006> to make the blog API work basically at
 all, and you\'ll need my patch from <http://drupal.org/node/243907> for
 file/image uploads to work.
-:::
-:::
-:::
+
+
+
 

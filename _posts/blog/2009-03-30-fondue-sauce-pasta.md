@@ -5,9 +5,9 @@ date: 2009-03-30 02:29:30 +0000
 categories: ["cooking", "pasta", "cheese"]
 permalink: /content/fondue-sauce-pasta
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 Whipped this up the other night, and we enjoyed it, so I thought I\'d
 share. Convergence nearly gaurantees that a similar or identical recipe
 exists elsewhere, but I believe that I still get to call this a
@@ -29,7 +29,7 @@ over the pasta of your choice.
 
 When writing about food, I feel it incumbent upon myself to link [The
 Captain\'s Table](http://capitalck.blogspot.com/).
-:::
-:::
-:::
+
+
+
 

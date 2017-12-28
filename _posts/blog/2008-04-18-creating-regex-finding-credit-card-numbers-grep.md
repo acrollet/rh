@@ -5,9 +5,9 @@ date: 2008-04-18 20:33:44 +0000
 categories: []
 permalink: /creating-regex-finding-credit-card-numbers-grep
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 Ugly regex:
 
     grep '\(^\|[^0-9]\)\{1\}\([345]\{1\}[0-9]\{3\}\|6011\)\{1\}[-]\?[0-9]\{4\}[-]\?\
@@ -57,7 +57,7 @@ The \--color switch will highlight matches - very handy when you\'re
 searching through dense SQL dumps!
 
 ![](http://reluctanthacker.rollett.org/sites/default/files/Picture%2010.png)
-:::
-:::
-:::
+
+
+
 

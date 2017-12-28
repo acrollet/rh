@@ -5,9 +5,9 @@ date: 2008-03-04 05:12:22 +0000
 categories: []
 permalink: /gyazmail-love-child-mailapp-and-mutt
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 I may have found what is, for me, the ultimate OS X mail client. My
 requirements are thus:
 
@@ -52,7 +52,7 @@ consider several that only have POP support.
 Time for bed\... tune in tomorrow to find out why I think Gyazmail may
 be the One Client To Rule Them All. for me, anyway. at least 6 days out
 of the week
-:::
-:::
-:::
+
+
+
 

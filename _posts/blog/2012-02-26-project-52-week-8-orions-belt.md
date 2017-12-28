@@ -5,9 +5,9 @@ date: 2012-02-26 04:38:35 +0000
 categories: ["photography", "astrophotography", "astronomy"]
 permalink: /project-52-week-8-orions-belt
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 [![](/sites/default/files/images/orion_stacked.jpg){width="680px"}](/sites/default/files/images/orion.png)
 
 Inspired by a combination of having recently read a [fantastic book
@@ -21,7 +21,7 @@ stack of 3 10 second exposures (without a tracking mount, one can\'t do
 very long exposures without getting star trails. Orion\'s belt is in the
 center, and I\'m quite pleased for a first attempt! The image links to a
 full-size version, which does the subject slightly more justice.
-:::
-:::
-:::
+
+
+
 

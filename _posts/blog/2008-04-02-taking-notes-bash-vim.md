@@ -5,9 +5,9 @@ date: 2008-04-02 02:55:45 +0000
 categories: ["bash", "note", "vim"]
 permalink: /content/taking-notes-bash-vim
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 A co-worker sold me on the utility of having a program like
 [Yojimbo](http://www.barebones.com/products/yojimbo/). However, I\'m too
 cheap to shell out the \$39 for a license, and I prefer to have vi key
@@ -34,8 +34,8 @@ how I did it.
 
 The bash file to do the above looks like this:
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     note[(]{style="color: #7a0874; font-weight: bold;"}[)]{style="color: #7a0874; font-weight: bold;"}
     [{]{style="color: #7a0874; font-weight: bold;"}
@@ -247,8 +247,8 @@ The bash file to do the above looks like this:
     [-o]{style="color: #660033;"} nospace [-F]{style="color: #660033;"}
     \_notes copynote
     :::
-:::
-:::
+
+
 
 Now, here\'s the other piece. Put this in your .vimrc:
 
@@ -284,7 +284,7 @@ Now, when you type \'notes\' at the prompt, you\'ll get this view:
 Place the cursor over the note you wish to edit, press \'x\', and it
 will open up the split-pane view with the note and tag files. I welcome
 suggestions for improvements!
-:::
-:::
-:::
+
+
+
 

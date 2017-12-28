@@ -5,9 +5,9 @@ date: 2009-07-14 22:12:49 +0000
 categories: ["perl", "bash", "debian", "prowl", "nagios"]
 permalink: /content/setting-nagios3-send-prowl-notifications
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 *Updated 27.i.2010 to reflect mig5\'s corrections*
 
 I spent a few minutes today setting up our nagios install at work to
@@ -19,8 +19,8 @@ would briefly document the process.
 First, you must download the perl script that will send prowl
 notifications.\
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [sudo]{style="color: #c20cb9; font-weight: bold;"}
     [mkdir]{style="color: #c20cb9; font-weight: bold;"}
@@ -46,14 +46,14 @@ notifications.\
     [chmod]{style="color: #c20cb9; font-weight: bold;"} +x
     [/]{style="color: #000000; font-weight: bold;"}usr[/]{style="color: #000000; font-weight: bold;"}local[/]{style="color: #000000; font-weight: bold;"}bin[/]{style="color: #000000; font-weight: bold;"}prowl.pl
     :::
-:::
-:::
+
+
 
 Next, you will have to install the Crypt::SSLeay and LWP::UserAgent
 library for perl, so it can access https URLs.\
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [\# If you\'re running
     debian/ubuntu]{style="color: #666666; font-style: italic;"}
@@ -81,13 +81,13 @@ library for perl, so it can access https URLs.\
     [\# sudo cpan install
     LWP::UserAgent]{style="color: #666666; font-style: italic;"}
     :::
-:::
-:::
+
+
 
 Now, try it out to be sure it works:\
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [/]{style="color: #000000; font-weight: bold;"}usr[/]{style="color: #000000; font-weight: bold;"}local[/]{style="color: #000000; font-weight: bold;"}bin[/]{style="color: #000000; font-weight: bold;"}prowl.pl
     [-apikey]{style="color: #660033;"}=[\'yourAPIkeyHere\']{style="color: #ff0000;"}
@@ -96,8 +96,8 @@ Now, try it out to be sure it works:\
     [-notification]{style="color: #660033;"}=[\'mic check 1
     2\']{style="color: #ff0000;"}
     :::
-:::
-:::
+
+
 
 You should get a \'Notification successfully posted.\' message. (and a
 popup on your phone, of course!) If the script isn\'t working, you\'ll
@@ -109,8 +109,8 @@ First, you need to set up your contact information. Edit whichever file
 you keep your contacts in, and modify an existing record, or add a new
 one, similar to this:
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     define contact[{]{style="color: #7a0874; font-weight: bold;"}
     :::
@@ -156,8 +156,8 @@ one, similar to this:
 11. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
         [}]{style="color: #7a0874; font-weight: bold;"}
     :::
-:::
-:::
+
+
 
 It is very important that you leave the underscore in front of the
 \_prowl\_apikey variable, as Nagios\' custom variables [depend on
@@ -166,8 +166,8 @@ it](http://nagios.sourceforge.net/docs/3_0/customobjectvars.html).
 Next, you\'ll need to add the custom prowl notification commands. Edit
 the appropriate file, and add these commands:
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     define
     [command]{style="color: #7a0874; font-weight: bold;"}[{]{style="color: #7a0874; font-weight: bold;"}
@@ -225,8 +225,8 @@ the appropriate file, and add these commands:
 9.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [}]{style="color: #7a0874; font-weight: bold;"}
     :::
-:::
-:::
+
+
 
 If your perl binary doesn\'t live in /usr/bin, be sure to give the
 correct path. (run \'which perl\' to find this out if you don\'t know)
@@ -234,8 +234,8 @@ If you try to run the prowl.pl script directly, (without using the
 system perl binary) nagios uses its own perl interpreter, and you\'ll
 get an error similar to this in the nagios logs:
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [\*]{style="color: #000000; font-weight: bold;"}ePN failed to
     compile
@@ -244,13 +244,13 @@ get an error similar to this in the nagios logs:
     of line syntax error at (eval 1) line 102, at
     EOF\"]{style="color: #ff0000;"}
     :::
-:::
-:::
+
+
 
 If you have any trouble, check the nagios debug logs, (you may need to
 turn up the nagios debug level) and try to run the command it\'s
 producing as the nagios user.
-:::
-:::
-:::
+
+
+
 

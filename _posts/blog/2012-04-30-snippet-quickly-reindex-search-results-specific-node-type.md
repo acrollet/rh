@@ -5,13 +5,13 @@ date: 2012-04-30 22:32:47 +0000
 categories: ["drupal", "coding"]
 permalink: /snippet-quickly-reindex-search-results-specific-node-type
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 Had the need to do this, saving the snippet here.
 
-::: {.geshifilter}
-::: {.php .geshifilter-php style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [\<?php]{style="color: #000000; font-weight: bold;"}
     :::
@@ -60,9 +60,9 @@ Had the need to do this, saving the snippet here.
 9.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [}]{style="color: #009900;"}
     :::
-:::
-:::
-:::
-:::
-:::
+
+
+
+
+
 

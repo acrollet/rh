@@ -5,9 +5,9 @@ date: 2008-03-09 05:42:20 +0000
 categories: []
 permalink: /macvim-odbinputmanager-happiness
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 So, MacOS offers some emacs key bindings through-out the OS. Great, you
 say -\
 but I use vi, and I don\'t want to waste years of muscle memory! (This
@@ -33,7 +33,7 @@ MacVim. Edit to\
 your heart\'s content, and just save and close the document when you\'re
 done. It pops right\
 up in whatever app you were using before. Bliss\...
-:::
-:::
-:::
+
+
+
 

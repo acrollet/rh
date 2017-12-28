@@ -5,9 +5,9 @@ date: 2008-04-08 05:08:25 +0000
 categories: ["drupal", "python", "xmlrpc", "vim"]
 permalink: /content/posting-drupal-blog-vim-side-forays-uploading-and-free-tagging
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 So, we are finally getting closer to the long-awaited post (ha!) about
 posting to drupal from vim. I\'ve been having a lot of fun making this
 plug-in suit my needs, and making it truly easy to post. Python hasn\'t
@@ -45,7 +45,7 @@ actually being performed\... Small price to pay, I guess!
 
 Well, it\'s Time For Bed®, but I\'ll post more about the process of
 making this plugin and what I learned along the way soon\...
-:::
-:::
-:::
+
+
+
 

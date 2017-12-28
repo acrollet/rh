@@ -5,9 +5,9 @@ date: 2009-03-05 16:33:05 +0000
 categories: ["drupal", "philosophy", "morality"]
 permalink: /content/thoughts-david-weinbergers-drupalcon-keynote-today
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 So [David Weinberger](http://en.wikipedia.org/wiki/David_Weinberger)
 gave an interesting keynote this morning, entitled \"Is drupal moral?\".
 It was engaging and funny, but I ultimately felt that his conclusion (as
@@ -20,7 +20,7 @@ for diverse purposes, of differing moral value. For instance, the white
 supremacist movement could use Drupal to build a social network and
 engage its members just as easily as Habitat for Humanity can use it to
 further its mission.
-:::
-:::
-:::
+
+
+
 

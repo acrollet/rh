@@ -5,14 +5,14 @@ date: 2009-01-27 22:31:13 +0000
 categories: ["drupal", "xmlrpc", "vim", "blogapi"]
 permalink: /drupal-blogapi-client-new-version
 ---
-::: {.field .field-name-upload .field-type-file .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/drupal\_blog.vim\_.sanitized
 
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 Thanks to a
 [suggestion](http://reluctanthacker.rollett.org/node/39#comment-15) on
 an earlier post, I decided to extend the infamous VIM blogging client to
@@ -33,10 +33,10 @@ prefer)
 
 Please leave a comment if you end up using this - it\'s really the only
 thing that encourages me to continue development!
-:::
-:::
-:::
-:::
-:::
-:::
+
+
+
+
+
+
 

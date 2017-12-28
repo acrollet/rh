@@ -5,14 +5,14 @@ date: 2009-03-23 03:51:34 +0000
 categories: ["mac os x", "applescript", "mutt", "email", "imap", "addressbook", "lbdb"]
 permalink: /content/full-integration-mutt-and-os-x-addressbook
 ---
-::: {.field .field-name-upload .field-type-file .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/add\_address.sh\_.txt
 
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 So, my experiments with mutt continue. Incidentally, if you think that
 I\'m crazy for using a cli email client in this day and age\... Well,
 you\'re probably right. However, I\'m crazy, but not alone, as the
@@ -36,8 +36,8 @@ existing record with the same name, and add the address to that, or
 create a new record if necessary. You will also be prompted to pick a
 label from those currently in use in your addressbook.
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     macro index,pager A [\"\<pipe-message\>/opt/local/bin/lbdb-fetchaddr
     -x from -d
@@ -45,12 +45,12 @@ label from those currently in use in your addressbook.
     [\"add the sender address to os x
     addressbook\"]{style="color: #ff0000;"}
     :::
-:::
-:::
-:::
-:::
-:::
-:::
-:::
-:::
+
+
+
+
+
+
+
+
 

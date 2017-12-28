@@ -5,9 +5,9 @@ date: 2009-03-20 02:53:02 +0000
 categories: ["mac os x", "mutt", "email", "imap"]
 permalink: /content/using-quicklook-image-viewer-mutt
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 So, I\'m wavering between email clients yet again - giving the
 [mutt](http://www.mutt.org/)+[isync](http://isync.sourceforge.net/)
 combination a try this time\... Mutt\'s disconnected imap support is
@@ -22,8 +22,8 @@ quick wrapper script to provide mutt with a 0 exit status instead of the
 from spitting out the \'press any key to continue\' message and
 requiring an EXTRA KEYSTROKE. (picky, picky\...)
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     [\#!/bin/bash]{style="color: #666666; font-style: italic;"}
     :::
@@ -62,14 +62,14 @@ requiring an EXTRA KEYSTROKE. (picky, picky\...)
     [\>&]{style="color: #000000; font-weight: bold;"}
     [/]{style="color: #000000; font-weight: bold;"}dev[/]{style="color: #000000; font-weight: bold;"}null
     :::
-:::
-:::
+
+
 
 A little adjustment in \~/.mailcap, and away you go\... Here\'s an
 example of one of the very important images that it\'s vital I see in my
 email:
 ![](http://reluctanthacker.rollett.org/sites/default/files/Picture35.png)
-:::
-:::
-:::
+
+
+
 

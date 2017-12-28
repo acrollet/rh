@@ -5,9 +5,9 @@ date: 2009-08-08 01:44:18 +0000
 categories: ["cooking", "vegetables", "health"]
 permalink: /content/tomato-kale-and-white-bean-soup
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 Background\
 We recently joined a [CSA](http://www.localharvest.org/csa/), and
 although we haven\'t received our first share yet, we\'ve already been
@@ -65,7 +65,7 @@ that way, though.
 Credits\
 The initial inspiration for this recipe came from the Bean and Kale soup
 recipe on [this page](http://www.seasonalchef.com/recipe1205f.htm).
-:::
-:::
-:::
+
+
+
 

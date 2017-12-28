@@ -5,9 +5,9 @@ date: 2008-06-11 02:02:25 +0000
 categories: ["mac os x", "mail.app", "applescript"]
 permalink: /applescript-open-different-accounts-inbox-mailapp
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 A while ago, I threatened to post this script, and then it slipped my
 mind, mostly because I switched to
 [Gyazmail](http://reluctanthacker.rollett.org/node/3). At any rate, one
@@ -18,8 +18,8 @@ Act-On](http://www.indev.ca/MailActOn.html) working so nicely. The
 applescript was harder to figure out than it perhaps should have been,
 so here it is in the hopes that it will help someone.
 
-::: {.geshifilter}
-::: {.bash .geshifilter-bash style="font-family:monospace;"}
+
+
 1.  ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     tell application [\"Mail\"]{style="color: #ff0000;"}
     :::
@@ -79,15 +79,15 @@ so here it is in the hopes that it will help someone.
 11. ::: {style="font-family: monospace; font-weight: normal; font-style: normal"}
     end [if]{style="color: #000000; font-weight: bold;"}
     :::
-:::
-:::
+
+
 
 Paste the script into Script Editor.app, change Gmail to whatever you
 have your account named, and save it to \~/Library/Scripts. You\'ll need
 to use something like [Quicksilver](http://www.blacktree.com/) or
 [FastScripts](http://www.red-sweater.com/fastscripts/index.html) to set
 up a keyboard shortcut, and then away you go.
-:::
-:::
-:::
+
+
+
 

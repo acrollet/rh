@@ -5,9 +5,9 @@ date: 2008-05-31 16:49:54 +0000
 categories: ["bash", "screen", "gnu screen", "shell scripting", "system administration"]
 permalink: /setting-screens-title-currently-running-process-bash
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 This is the first of a series of at least two posts about how I\'ve
 configured the excellent [Gnu
 Screen](http://www.gnu.org/software/screen/) to fit my needs and make me
@@ -52,7 +52,7 @@ each command is executed. Here\'s how I modified his code:
 Finally, here\'s the obligatory screenshot.
 
 ![](http://reluctanthacker.rollett.org/sites/default/files/Picture%2013.png)
-:::
-:::
-:::
+
+
+
 

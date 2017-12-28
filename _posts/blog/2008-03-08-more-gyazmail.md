@@ -5,9 +5,9 @@ date: 2008-03-08 00:50:06 +0000
 categories: []
 permalink: /more-gyazmail
 ---
-::: {.field .field-name-body .field-type-text-with-summary .field-label-hidden}
-::: {.field-items}
-::: {.field-item .even}
+
+
+
 Anyway, it\'s been a while since the previous post, but luckily, I have
 no\
 readers.
@@ -62,7 +62,7 @@ many bugs\
 in Apple\'s implementation. (You can reply to a message, but it won\'t
 pass back\
 a reference to the message you just created - nice.)
-:::
-:::
-:::
+
+
+
 
