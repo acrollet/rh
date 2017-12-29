@@ -37,12 +37,24 @@
         <span class="author vcard">By <span class="fn">{{ author.name }}</span></span>
         <span class="entry-date date published"><time datetime="{{ page.date | date_to_xmlschema }}"><i class="fa fa-calendar-o"></i> {{ page.date | date: "%B %d, %Y" }}</time></span>
         {% if page.modified %}<span class="entry-date date modified"><time datetime="{{ page.modified }}"><i class="fa fa-pencil"></i> {{ page.modified | date: "%B %d, %Y" }}</time></span>{% endif %}
-        {% if site.owner.disqus-shortname and page.comments or site.comments %}<span class="entry-comments"><i class="fa fa-comment-o"></i> <a href="#disqus_thread">Comment</a></span>{% endif %}
         {% if page.share %}{% include social-share.html %}{% endif %}
         {% if page.ads == true %}{% include ad-sidebar.html %}<!-- /.google-ads -->{% endif %}
       </footer>
       <div class="entry-content">
         {{ content }}
+        {% if site.data.comments[page.slug] %}
+          <hr>
+          {% assign comments = site.data.comments[page.slug] | sort %}
+          {% for comment in comments %}
+            {% assign email = comment[1].email %}
+            {% assign name = comment[1].name %}
+            {% assign url = comment[1].url %}
+            {% assign date = comment[1].date %}
+            {% assign message = comment[1].message %}
+            {% include comment.html index=forloop.index avatar=avatar email=email name=name url=url date=date message=message %}
+          {% endfor %}
+        {% endif %}
+        <hr>
         <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
           <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
           <input name="options[slug]" type="hidden" value="{{ page.slug }}">
