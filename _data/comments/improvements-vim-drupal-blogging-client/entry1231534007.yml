@@ -1,0 +1,11 @@
+---
+_id: 5a46d90e4f3a8
+name: Jakub Suchy
+email: d41d8cd98f00b204e9800998ecf8427e
+message: "This is so cool!\r\n\r\nHowever, i get this error:\r\n\r\nTraceback (most
+  recent call last):\r\n  File \"<string>\", line 1, in <module>\r\n  File \"<string>\",
+  line 156, in GetPosts\r\nTypeError: bad argument type for built-in operation\r\n\r\nI
+  wasn't able to determine the exact problem but i wonder if it is caused by UTF-8
+  chars in my post titles?\r\n\r\nCheers,\r\nJakub"
+date: "1231534007"
+...

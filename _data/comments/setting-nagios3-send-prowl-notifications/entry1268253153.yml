@@ -1,0 +1,16 @@
+---
+_id: 5a46d90e6fb77
+name: Jason Price
+email: 66eaa7e0041fcfcd9010186140bcff99
+message: "I recently installed the notify by prowl code.\r\nI can get the test message
+  through the linux console but, when i run it through nagios it does not work. any
+  ideas?\r\nHere is the command verbage.\r\n\r\n# 'notify-host-by-prowl' command definition\r\ndefine
+  command{\r\n\tcommand_name\tnotify-host-by-prowl\r\n\tcommand_line\t/usr/bin/perl
+  -w /usr/local/bin/prowl.pl -apikey=\"$_CONTACTPROWL_APIKEY$\" -priority=1 -application=\"Nagios\"
+  -event=\"Host\" -notification=\"$HOSTNAME$ $HOSTDESC$ '$HOSTOUTPUT$'\"\r\n}\r\n\r\n#
+  'notify-service-by-prowl' command definition\r\ndefine command{\r\n\tcommand_name\tnotify-service-by-prowl\r\n\tcommand_line\t/usr/bin/perl
+  -w /usr/local/bin/prowl.pl -apikey=\"$_CONTACTPROWL_APIKEY$\" -priority=1 -application=\"Nagios\"
+  -event=\"Service\" -notification=\"$HOSTNAME$ $SERVICEDESC$ '$SERVICEOUTPUT$'\"\r\n}\r\n\r\nThanks
+  in advance."
+date: "1268253153"
+...

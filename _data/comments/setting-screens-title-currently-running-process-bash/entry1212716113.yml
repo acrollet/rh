@@ -1,0 +1,12 @@
+---
+_id: 5a46d90e4c6c0
+name: acrollet
+email: d41d8cd98f00b204e9800998ecf8427e
+message: "sorry I didn't notice this comment until now, need to set up email notifications!\r\n\r\nquestions
+  1 and 2 - good question! Neither are necessary, and must have been a result of the
+  different things I tried while I was getting this to work... I'll modify the code
+  sample, thanks!\r\n\r\nquestion 3 - the reason (I think) that \\e doesn't work in
+  PS1 is because it is an escape only understood by bash's 'echo' built-in, and not
+  interpreted in prompts. (see the section on echo in the bash man page)"
+date: "1212716113"
+...

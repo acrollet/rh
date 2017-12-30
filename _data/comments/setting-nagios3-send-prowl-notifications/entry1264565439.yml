@@ -1,0 +1,14 @@
+---
+_id: 5a46d90e6d90f
+name: mig5
+email: 1b4feb9519a4d198a04221878e454ea7
+message: "Hi Adrian,\r\n\r\nJust in the middle of setting up the same thing. Thanks
+  for your excellent guide.\r\n\r\nJust thought I'd note that if you're on Debian/Ubuntu,
+  you'll also need to apt-get install liblwp-useragent-determined-perl if you haven't
+  got it already, or else Perl will die with this error:\r\n\r\n<code>\r\nCan't locate
+  LWP/UserAgent.pm in @INC (@INC contains: /etc/perl /usr/local/lib/perl/5.10.0 /usr/local/share/perl/5.10.0
+  /usr/lib/perl5 /usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10 /usr/local/lib/site_perl
+  .) at /usr/local/bin/prowl.pl line 33.\r\nBEGIN failed--compilation aborted at /usr/local/bin/prowl.pl
+  line 33.\r\n</code>\r\n"
+date: "1264565439"
+...

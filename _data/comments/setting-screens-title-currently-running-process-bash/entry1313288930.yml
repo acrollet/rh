@@ -1,0 +1,9 @@
+---
+_id: 5a46d90e7c02e
+name: shuple
+email: d41d8cd98f00b204e9800998ecf8427e
+message: Is it possible to view the host name and command while you are logged into
+  a different server? For example, when I run screen on server A, then ssh into server
+  B, the screen title stays as ssh server B.
+date: "1313288930"
+...

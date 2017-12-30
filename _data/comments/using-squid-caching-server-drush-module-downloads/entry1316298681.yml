@@ -1,0 +1,12 @@
+---
+_id: 5a46d90e7caec
+name: patcon
+email: 443dcc37ffc0d9243a593d496167225f
+message: "Hmmm... in the squid3 access.log, I seem to be getting TCP_CLIENT_REFRESH_MISS
+  for all modules when I use the alias:\r\ndrush=\"http_proxy=http://localhost:3128
+  drush\"\r\n\r\nFunny, cause when we specify a direct git repo in the make file,
+  then we get a TCP_HIT, but it misses for everything else...\r\n\r\nbut hey, drush
+  dl works fine, it's just drush make that's giving issue :S\r\n\r\nJust posting in
+  case someone else gets the same problem!"
+date: "1316298681"
+...

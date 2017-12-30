@@ -1,0 +1,8 @@
+---
+_id: 5a46d90e73e42
+name: fago
+email: d41d8cd98f00b204e9800998ecf8427e
+message: "apt-get install squid3\r\nsudo edit /etc/environment\r\n\r\n>add the following
+  line:\r\nhttp_proxy=\"http://localhost:3128\"\r\n\r\n>done"
+date: "1284392929"
+...

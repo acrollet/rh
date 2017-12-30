@@ -1,0 +1,10 @@
+---
+_id: 5a46d90e72e3e
+name: jhedstrom
+email: 8c3db09b23420825fa5151a88686d8e8
+message: "Thanks for this post. It took me a while to get it to automatically work
+  for drush (eg, w/o having to type the full http_proxy=... bit above). The missing
+  piece was to add\r\n<code>\r\nhttp_proxy=http://localhost:3128\r\nftp_proxy=http://localhost:3128\r\nuse_proxy=on\r\n</code>\r\nto
+  my .wgetrc file."
+date: "1284050703"
+...

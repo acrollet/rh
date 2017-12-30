@@ -1,0 +1,11 @@
+---
+_id: 5a46d90e6ab83
+name: mig5
+email: 1b4feb9519a4d198a04221878e454ea7
+message: "Sorry, just nitpicking..\r\n\r\nYour host command definition in the example
+  is using $SERVICEDESC$ '$SERVICEOUTPUT$' instead of $HOSTDESC$ $HOSTOUTPUT$, these
+  would result in empty variables in the prowl message.\r\n\r\nAlso the path to your
+  prowl.pl in the command definitions is /usr/local/nagios3/libexec, but previously
+  we wget it to /usr/local/bin\r\n\r\nOtherwise, great! Thanks again."
+date: "1264567148"
+...

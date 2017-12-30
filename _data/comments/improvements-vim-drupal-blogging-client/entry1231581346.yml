@@ -1,0 +1,11 @@
+---
+_id: 5a46d90e52286
+name: Jakub Suchy
+email: d41d8cd98f00b204e9800998ecf8427e
+message: "One more idea which i am not able to implement due to lack of proper Python
+  knowledge :)\r\n\r\nI know it's possible to post multiple content types using blogapi.
+  What about changing command \"e blog/something\" to \"e content_type/something\".
+  Therefore \"e story\" or \"n story\" would create a new story, \"n page\" would
+  create a new page, etc. Simple \"n\" would still create a blog."
+date: "1231581346"
+...

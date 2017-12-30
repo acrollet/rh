@@ -1,0 +1,10 @@
+---
+_id: 5a46d90e7b77b
+name: thedavidmeister
+email: fd55ed3477b62be6d4925989baa96eec
+message: "thanks, drush was hanging until i added this to my .wgetrc file.\r\n\r\nfor
+  me drush make wanted to use cURL, so when aegir tried to set up new platforms for
+  me they'd hang or fail.\r\n\r\ni made a .curlrc file that was basically the same
+  as the .wgetrc file suggested by jhedstrom\r\n\r\nmore info here: http://drupal.org/node/270963#comment-2544452"
+date: "1312976696"
+...

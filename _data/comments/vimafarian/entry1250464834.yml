@@ -1,0 +1,10 @@
+---
+_id: 5a46d90e653b2
+name: acrollet
+email: d41d8cd98f00b204e9800998ecf8427e
+message: for global data storage, why not use the HTML5 client DB storage API? (<a
+  href="http://webkit.org/demos/sticky-notes/index.html">example here</a>) That's
+  a great idea, by the way. I would encourage you to check out the script on github
+  and fork with any improvements, I'll gladly roll new stuff in...
+date: "1250464834"
+...

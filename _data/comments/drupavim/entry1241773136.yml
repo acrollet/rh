@@ -1,0 +1,14 @@
+---
+_id: 5a46d90e5f97a
+name: Martin
+email: fb4c75964d96a30bf9aa7fa1c40949d6
+message: "It's unfortunately not working. When I start up vim i get the following:\r\nError
+  detected while processing /home/martin/.vim/plugin/drupavim.vim: \r\nline  331:
+  \r\nE174: Command already exists: add ! to replace it \r\nline  332: \r\nE174: Command
+  already exists: add ! to replace it \r\nline  333: \r\nE174: Command already exists:
+  add ! to replace it \r\nline  334: \r\nE174: Command already exists: add ! to replace
+  it \r\nline  335: \r\nE174: Command already exists: add ! to replace it \r\n\r\nTrying
+  ListPosts I get:\r\n I was unable to retrieve posts! Perhaps the username or password
+  is incorrect?\r\nalthough I am sure they are right... "
+date: "1241773136"
+...

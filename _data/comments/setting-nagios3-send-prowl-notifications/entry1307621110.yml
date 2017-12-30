@@ -1,0 +1,13 @@
+---
+_id: 5a46d90e7a542
+name: monaco
+email: d82f7621770738499c1b1bac6ffd822b
+message: "   1.      define contact{\r\n   2.      contact_name                    adrian_pager\r\n
+  \  3.      alias                           Adrian Rollett\r\n   4.      service_notification_period
+  \    24x7\r\n   5.      host_notification_period        24x7\r\n   6.      service_notification_options
+  \   w,u,c,r\r\n   7.      host_notification_options       d,u,r\r\n   8.      service_notification_commands
+  \  notify-service-by-prowl\r\n   9.      host_notification_commands      notify-host-by-prowl\r\n
+  \ 10.      <b>_contact</b>_prowl_apikey                   yourAPIkeyGoesHere\r\n
+  \ 11.\r\n          }\r\n"
+date: "1307621110"
+...

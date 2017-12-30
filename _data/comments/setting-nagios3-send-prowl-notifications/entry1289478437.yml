@@ -1,0 +1,11 @@
+---
+_id: 5a46d90e75abd
+name: acrollet
+email: d41d8cd98f00b204e9800998ecf8427e
+message: "glad it's working for you! I can think of two ways to accomplish this -
+  the first would be to write a wrapper script that sets the priority based on the
+  input, and call that instead. The second is what I do - I use nagios escalations
+  so that only the truly critical notifications get sent directly to my phone, and
+  deal with the rest via email. \r\n\r\ngood luck!"
+date: "1289478437"
+...

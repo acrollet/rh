@@ -1,0 +1,8 @@
+---
+_id: 5a46d90e50106
+name: Jakub Suchy
+email: d41d8cd98f00b204e9800998ecf8427e
+message: "Yes, I was right. Change the for to:\r\n\r\nvim.current.buffer.append( post['postid']
+  + ': ' + post['title'].encode('utf8') )\r\n\r\nand it works..."
+date: "1231534241"
+...

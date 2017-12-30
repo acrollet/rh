@@ -1,0 +1,12 @@
+---
+_id: 5a46d90e7748c
+name: George Hazlewood
+email: 71a1354c2fa5330cfeddd033867a46ce
+message: "I got this setup working under OS X with MacPorts like this: \r\n\r\n<code>sudo
+  port install squid3</code>\r\n\r\nwait a bit while it builds then make squid load
+  as a daemon with\r\n\r\n<code>sudo port load squid3</code>\r\n\r\nand you can get
+  wget (and hence drush) to use squid by creating a .wgetrc file with the suggested
+  \r\n\r\n<code>\r\nhttp_proxy=http://localhost:3128\r\nftp_proxy=http://localhost:3128\r\nuse_proxy=on\r\n</code>\r\n\r\nYou
+  can see all the action with a quick:\r\n\r\n<code>sudo tail /opt/local/var/squid/logs/access.log</code>"
+date: "1296123771"
+...

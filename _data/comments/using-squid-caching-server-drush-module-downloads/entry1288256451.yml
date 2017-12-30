@@ -1,0 +1,17 @@
+---
+_id: 5a46d90e746ad
+name: C.Lee Taylor
+email: a6641326402e6ea21b8e69c68e13bb7c
+message: "Greetings ...\r\n\r\n This is an awesome idea, but if you using Aegir, you
+  can't really pass proxy details to drush and you can't alias it either, because
+  the aegir user account is not really a shell, for security reasons.\r\n\r\n So,
+  what I did was setup iptables, to forward all outbound http traffic to squid, using
+  the following commands ...\r\n\r\niptables -t nat -F  # clear table\r\n\r\n# normal
+  transparent proxy\r\niptables -t nat -A PREROUTING -p tcp -i eth0 --dport 80 -j
+  REDIRECT --to-port 3127\r\n\r\n# handle connections on the same box (SQUIDIP is
+  a loopback instance)\r\ngid=`id -g proxy`\r\niptables -t nat -A OUTPUT -p tcp --dport
+  80 -m owner --gid-owner $gid -j ACCEPT\r\niptables -t nat -A OUTPUT -p tcp --dport
+  80 -j DNAT --to-destination SQUIDIP:3127\r\n\r\nComplete details at ... http://wiki.squid-cache.org/ConfigExamples/Intercept/LinuxLocalhost\r\n\r\nHope
+  that helps other people."
+date: "1288256451"
+...

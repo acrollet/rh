@@ -1,0 +1,10 @@
+---
+_id: 5a46d90e7262a
+name: adrinux
+email: 1cf215df35b22fd0c93679c826f80574
+message: "Thanks for taking the time to write this. I just did the setup on ubuntu
+  9.10, the only thing different was the log files, I had to do <code>sudo tail -f
+  /var/log/squid3/access.log</code>.\r\n\r\nSeems to be working. Now to try it with
+  drush. :)"
+date: "1272579852"
+...
