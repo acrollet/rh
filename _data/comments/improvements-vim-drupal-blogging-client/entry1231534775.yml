@@ -1,9 +1,0 @@
----
-_id: 5a46d90e50c66
-name: Jakub Suchy
-email: d41d8cd98f00b204e9800998ecf8427e
-message: "Here is my patch to your client, fixing:\r\n1) one syntax error you had\r\n2)
-  utf8 strings everywhere\r\n\r\nnow editing/newposts/listing works with UTF8 characters
-  too...didn't test uploading files...\r\n\r\nhttp://temp.jakubsuchy.cz/drupal_blog.vim.patch"
-date: "1231534775"
-...

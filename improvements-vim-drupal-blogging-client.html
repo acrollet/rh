@@ -1,0 +1,477 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Improvements to the Vim drupal blogging client  &#8211; Reluctant Hacker</title>
+<meta name="description" content="I’ve made a few improvements to my Drupal blogging client, first spoken
+about here. It now has the
+ability to publish and unpublish posts, delete posts, and create and
+edit free tags (folksonomy). The free tagging feature requires a module
+that I’ve packaged up for parsing tags in the post body - just waiting
+on permission from the author of the sample code I modified before
+posting that. Hopefully it’ll be coming soon!
+
+">
+<meta name="keywords" content="drupal, python, xmlrpc, vim">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Improvements to the Vim drupal blogging client ">
+<meta name="twitter:description" content="I’ve made a few improvements to my Drupal blogging client, first spoken
+about here. It now has the
+ability to publish and unpublish posts, delete posts, and create and
+edit free tags (folksonomy). The free tagging feature requires a module
+that I’ve packaged up for parsing tags in the post body - just waiting
+on permission from the author of the sample code I modified before
+posting that. Hopefully it’ll be coming soon!
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Improvements to the Vim drupal blogging client ">
+<meta property="og:description" content="I’ve made a few improvements to my Drupal blogging client, first spoken
+about here. It now has the
+ability to publish and unpublish posts, delete posts, and create and
+edit free tags (folksonomy). The free tagging feature requires a module
+that I’ve packaged up for parsing tags in the post body - just waiting
+on permission from the author of the sample code I modified before
+posting that. Hopefully it’ll be coming soon!
+
+">
+<meta property="og:url" content="http://localhost:4000/improvements-vim-drupal-blogging-client">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/improvements-vim-drupal-blogging-client">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#drupal" title="Pages tagged drupal">drupal</a></li><li><a href="http://localhost:4000/tags/#python" title="Pages tagged python">python</a></li><li><a href="http://localhost:4000/tags/#xmlrpc" title="Pages tagged xmlrpc">xmlrpc</a></li><li><a href="http://localhost:4000/tags/#vim" title="Pages tagged vim">vim</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Improvements to the Vim drupal blogging client </h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2008-06-06T14:33:58+00:00"><i class="fa fa-calendar-o"></i> June 06, 2008</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>I’ve made a few improvements to my Drupal blogging client, first spoken
+about <a href="http://reluctanthacker.rollett.org/node/25">here</a>. It now has the
+ability to publish and unpublish posts, delete posts, and create and
+edit free tags (folksonomy). The free tagging feature requires a module
+that I’ve packaged up for parsing tags in the post body - just waiting
+on permission from the author of the sample code I modified before
+posting that. Hopefully it’ll be coming soon!</p>
+
+<p><img src="http://reluctanthacker.rollett.org/sites/default/files/Picture%2020.png" alt="" /></p>
+
+<p>There are two new commands - :PublishPost and :SavePost. (:w still
+publishes a post, as before) Unfortunately, the drupal blogapi does not
+expose whether a post is published or not, so I had to resort to
+modifying the post title to show the post status. Hacky, but it works!</p>
+
+<p>I ran across a couple of very nice tools for working with xmlrpc while I
+was trying to get this all to work. First off is a great little tool
+called <a href="http://ditchnet.org/xmlrpc/">XML-RPC Client</a> - it’s just a Mac
+Os X (Cocoa) tool that lets you make an xmlrpc call, view the generated
+xml, and view the returned results as xml and a struct.</p>
+
+<p>Second, I found this <a href="http://www.myelin.co.nz/notes/xmlrpc-debug-proxy.html">proxy
+script</a> written
+in python - it made debugging much, much easier...</p>
+
+<p>Without further ado, here is the newest version of
+<a href="http://reluctanthacker.rollett.org/sites/default/files/drupal_blog.vim.sanitized">drupal_blog.vim</a>.
+As before, you will need to apply add1sun’s patch from
+<a href="http://drupal.org/node/224006">http://drupal.org/node/224006</a> to make the blog API work basically at
+all, and you’ll need my patch from <a href="http://drupal.org/node/243907">http://drupal.org/node/243907</a> for
+file/image uploads to work.</p>
+
+
+        
+          <hr>
+          
+          
+            
+            
+            
+            
+            
+            <article id="comment1" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Jakub Suchy</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment1" itemprop="url">
+        <time datetime="2009-01-09T20:46:47+00:00" itemprop="datePublished">January 09, 2009 at 08:46 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>This is so cool!</p>
+
+<p>However, i get this error:</p>
+
+<p>Traceback (most recent call last):
+  File “<string>", line 1, in <module>
+  File "<string>", line 156, in GetPosts
+TypeError: bad argument type for built-in operation</string></module></string></p>
+
+<p>I wasn’t able to determine the exact problem but i wonder if it is caused by UTF-8 chars in my post titles?</p>
+
+<p>Cheers,
+Jakub</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment2" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Jakub Suchy</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment2" itemprop="url">
+        <time datetime="2009-01-09T20:50:41+00:00" itemprop="datePublished">January 09, 2009 at 08:50 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Yes, I was right. Change the for to:</p>
+
+<p>vim.current.buffer.append( post[‘postid’] + ‘: ‘ + post[‘title’].encode(‘utf8’) )</p>
+
+<p>and it works…</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment3" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Jakub Suchy</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment3" itemprop="url">
+        <time datetime="2009-01-09T20:59:35+00:00" itemprop="datePublished">January 09, 2009 at 08:59 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Here is my patch to your client, fixing:
+1) one syntax error you had
+2) utf8 strings everywhere</p>
+
+<p>now editing/newposts/listing works with UTF8 characters too…didn’t test uploading files…</p>
+
+<p>http://temp.jakubsuchy.cz/drupal_blog.vim.patch</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment4" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment4" itemprop="url">
+        <time datetime="2009-01-10T04:20:22+00:00" itemprop="datePublished">January 10, 2009 at 04:20 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>thanks much for rolling a patch - I applied it and briefly tested it with my setup, all seems to be fine, so the version above is now utf8 ready! Also added some prettier exception handling for the case of a bad username/password when listing posts…</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment5" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Jakub Suchy</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment5" itemprop="url">
+        <time datetime="2009-01-10T09:55:46+00:00" itemprop="datePublished">January 10, 2009 at 09:55 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>One more idea which i am not able to implement due to lack of proper Python knowledge :)</p>
+
+<p>I know it’s possible to post multiple content types using blogapi. What about changing command “e blog/something” to “e content_type/something”. Therefore “e story” or “n story” would create a new story, “n page” would create a new page, etc. Simple “n” would still create a blog.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment6" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment6" itemprop="url">
+        <time datetime="2009-01-27T22:42:58+00:00" itemprop="datePublished">January 27, 2009 at 10:42 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>see http://reluctanthacker.rollett.org/node/59 :)</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment7" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Anonymous</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment7" itemprop="url">
+        <time datetime="2011-12-01T08:37:46+00:00" itemprop="datePublished">December 01, 2011 at 08:37 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Glad to hear that the version above is now ready. This is the only place i could find it. Couldn’t realize it such a great problem.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment8" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Bobo84</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment8" itemprop="url">
+        <time datetime="2012-05-06T12:22:20+00:00" itemprop="datePublished">May 06, 2012 at 12:22 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Hmm is anyone else encountering problems with the images on this blog loading? I’m trying to find out if its a problem on my end or if it’s the blog. Any suggestions would be greatly appreciated.</p>
+</div>
+  </div>
+</article>
+
+          
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="improvements-vim-drupal-blogging-client">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/setting-screens-title-currently-running-process-bash" class="btn" title="Setting Screen's title to the currently running process with bash">Previous</a>
+      
+      
+        <a href="http://localhost:4000/applescript-open-different-accounts-inbox-mailapp" class="btn" title="Applescript to open a different account's INBOX in Mail.app">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

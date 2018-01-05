@@ -1,0 +1,344 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Using quicklook as an image viewer for mutt &#8211; Reluctant Hacker</title>
+<meta name="description" content="So, I’m wavering between email clients yet again - giving the
+mutt+isync
+combination a try this time... Mutt’s disconnected imap support is
+sadly lacking, and I’ve messed with
+offlineimap
+before, but found it a bit too fiddly. Anyway, I thought quicklook would
+be a nice way to view the many highly important images I often get in my
+email, as it pops up quickly, and doesn’t require an application
+switch. A quick google scared up the ‘qlmanage’ utility, and I wrote a
+quick wrapper script to provide mutt with a 0 exit status instead of the
+130 that qlmanage spits out. (ummm, whatever, apple) This prevents mutt
+from spitting out the ‘press any key to continue’ message and
+requiring an EXTRA KEYSTROKE. (picky, picky...)
+
+">
+<meta name="keywords" content="mac os x, mutt, email, imap">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Using quicklook as an image viewer for mutt">
+<meta name="twitter:description" content="So, I’m wavering between email clients yet again - giving the
+mutt+isync
+combination a try this time... Mutt’s disconnected imap support is
+sadly lacking, and I’ve messed with
+offlineimap
+before, but found it a bit too fiddly. Anyway, I thought quicklook would
+be a nice way to view the many highly important images I often get in my
+email, as it pops up quickly, and doesn’t require an application
+switch. A quick google scared up the ‘qlmanage’ utility, and I wrote a
+quick wrapper script to provide mutt with a 0 exit status instead of the
+130 that qlmanage spits out. (ummm, whatever, apple) This prevents mutt
+from spitting out the ‘press any key to continue’ message and
+requiring an EXTRA KEYSTROKE. (picky, picky...)
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using quicklook as an image viewer for mutt">
+<meta property="og:description" content="So, I’m wavering between email clients yet again - giving the
+mutt+isync
+combination a try this time... Mutt’s disconnected imap support is
+sadly lacking, and I’ve messed with
+offlineimap
+before, but found it a bit too fiddly. Anyway, I thought quicklook would
+be a nice way to view the many highly important images I often get in my
+email, as it pops up quickly, and doesn’t require an application
+switch. A quick google scared up the ‘qlmanage’ utility, and I wrote a
+quick wrapper script to provide mutt with a 0 exit status instead of the
+130 that qlmanage spits out. (ummm, whatever, apple) This prevents mutt
+from spitting out the ‘press any key to continue’ message and
+requiring an EXTRA KEYSTROKE. (picky, picky...)
+
+">
+<meta property="og:url" content="http://localhost:4000/content/using-quicklook-image-viewer-mutt">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/content/using-quicklook-image-viewer-mutt">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#mac os x" title="Pages tagged mac os x">mac os x</a></li><li><a href="http://localhost:4000/tags/#mutt" title="Pages tagged mutt">mutt</a></li><li><a href="http://localhost:4000/tags/#email" title="Pages tagged email">email</a></li><li><a href="http://localhost:4000/tags/#imap" title="Pages tagged imap">imap</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Using quicklook as an image viewer for mutt</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2009-03-20T02:53:02+00:00"><i class="fa fa-calendar-o"></i> March 20, 2009</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>So, I’m wavering between email clients yet again - giving the
+<a href="http://www.mutt.org/">mutt</a>+<a href="http://isync.sourceforge.net/">isync</a>
+combination a try this time... Mutt’s disconnected imap support is
+sadly lacking, and I’ve messed with
+<a href="http://software.complete.org/software/projects/show/offlineimap">offlineimap</a>
+before, but found it a bit too fiddly. Anyway, I thought quicklook would
+be a nice way to view the many highly important images I often get in my
+email, as it pops up quickly, and doesn’t require an application
+switch. A quick google scared up the ‘qlmanage’ utility, and I wrote a
+quick wrapper script to provide mutt with a 0 exit status instead of the
+130 that qlmanage spits out. (ummm, whatever, apple) This prevents mutt
+from spitting out the ‘press any key to continue’ message and
+requiring an EXTRA KEYSTROKE. (picky, picky...)</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<span class="nv">QLFILE</span><span class="o">=</span><span class="nv">$1</span>
+ 
+<span class="c"># we have to trap ctrl-c so that a successful exit signal will be given,</span>
+<span class="c"># so that mutt won't prompt us to press any key to continue</span>
+<span class="nb">trap</span> <span class="s1">'exit 0'</span> 2 <span class="c">#traps Ctrl-C (signal 2)</span>
+ 
+qlmanage -p <span class="nv">$QLFILE</span> &gt;&amp; /dev/null
+</code></pre>
+</div>
+
+<p>A little adjustment in ~/.mailcap, and away you go... Here’s an
+example of one of the very important images that it’s vital I see in my
+email:
+<img src="http://reluctanthacker.rollett.org/sites/default/files/Picture35.png" alt="" /></p>
+
+
+        
+          <hr>
+          
+          
+            
+            
+            
+            
+            
+            <article id="comment1" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Anonymous</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment1" itemprop="url">
+        <time datetime="2009-11-06T06:40:36+00:00" itemprop="datePublished">November 06, 2009 at 06:40 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>I know you didn’t like using X11 tunneled over SSH, but try again using the image viewer “feh”.  http://linuxbrit.co.uk/software/feh/  It seems to be designed for this purpose - lightweight but flexable, using imlib2 instead of gtk or qt.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment2" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Anonymous</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment2" itemprop="url">
+        <time datetime="2009-11-06T06:41:05+00:00" itemprop="datePublished">November 06, 2009 at 06:41 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>I know you didn’t like using X11 tunneled over SSH, but try again using the image viewer “feh”.  http://linuxbrit.co.uk/software/feh/  It seems to be designed for this purpose - lightweight but flexable, using imlib2 instead of gtk or qt.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment3" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Anonymous</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment3" itemprop="url">
+        <time datetime="2009-11-06T06:41:58+00:00" itemprop="datePublished">November 06, 2009 at 06:41 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>I know you didn’t like using X11 tunneled over SSH, but try again using the image viewer “feh”, at linuxbrit.co.uk/software/feh/  It seems to be designed for this purpose - lightweight but flexable, using imlib2 instead of gtk or qt.</p>
+</div>
+  </div>
+</article>
+
+          
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="using-quicklook-image-viewer-mutt">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/content/one-liner-cron-entry-remove-files-downloaded-more-30-days-ago" class="btn" title="one-liner cron entry to remove files downloaded more than 30 days ago ">Previous</a>
+      
+      
+        <a href="http://localhost:4000/content/full-integration-mutt-and-os-x-addressbook" class="btn" title="Full integration of mutt and the OS X Addressbook">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

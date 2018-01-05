@@ -1,0 +1,610 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Setting up nagios3 to send prowl notifications &#8211; Reluctant Hacker</title>
+<meta name="description" content="Updated 27.i.2010 to reflect mig5’s corrections
+
+">
+<meta name="keywords" content="perl, bash, debian, prowl, nagios">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Setting up nagios3 to send prowl notifications">
+<meta name="twitter:description" content="Updated 27.i.2010 to reflect mig5’s corrections
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setting up nagios3 to send prowl notifications">
+<meta property="og:description" content="Updated 27.i.2010 to reflect mig5’s corrections
+
+">
+<meta property="og:url" content="http://localhost:4000/content/setting-nagios3-send-prowl-notifications">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/content/setting-nagios3-send-prowl-notifications">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#perl" title="Pages tagged perl">perl</a></li><li><a href="http://localhost:4000/tags/#bash" title="Pages tagged bash">bash</a></li><li><a href="http://localhost:4000/tags/#debian" title="Pages tagged debian">debian</a></li><li><a href="http://localhost:4000/tags/#prowl" title="Pages tagged prowl">prowl</a></li><li><a href="http://localhost:4000/tags/#nagios" title="Pages tagged nagios">nagios</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Setting up nagios3 to send prowl notifications</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2009-07-14T22:12:49+00:00"><i class="fa fa-calendar-o"></i> July 14, 2009</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p><em>Updated 27.i.2010 to reflect mig5’s corrections</em></p>
+
+<p>I spent a few minutes today setting up our nagios install at work to
+page me via <a href="http://prowl.weks.net/">prowl</a>, instead of an email-&gt;sms
+gateway. Why? Because I’m cheap, that’s why - don’t like paying for
+any more texts than I must. I ran into a few gotchas, so I thought I
+would briefly document the process.</p>
+
+<p>First, you must download the perl script that will send prowl
+notifications.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo mkdir -p /usr/local/bin
+sudo wget -O /usr/local/bin/prowl.pl &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">"http://prowl.weks.net/static/prowl.pl
+sudo"</span>&gt;http://prowl.weks.net/static/prowl.pl
+<span class="gp">sudo&lt;/a&gt; </span>chmod +x /usr/local/bin/prowl.pl
+</code></pre>
+</div>
+
+<p>Next, you will have to install the Crypt::SSLeay and LWP::UserAgent
+library for perl, so it can access https URLs.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># If you're running debian/ubuntu</span>
+sudo apt-get update; sudo apt-get install libcrypt-ssleay-perl liblwp-useragent-determined-perl
+<span class="c"># otherwise find a package for your distro, or run:</span>
+<span class="c"># sudo cpan install Crypt::SSLeay</span>
+<span class="c"># sudo cpan install LWP::UserAgent</span>
+</code></pre>
+</div>
+
+<p>Now, try it out to be sure it works:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>/usr/local/bin/prowl.pl -apikey<span class="o">=</span><span class="s1">'yourAPIkeyHere'</span> -application<span class="o">=</span><span class="s1">'prowl.pl'</span> -event<span class="o">=</span><span class="s1">'test'</span> -notification<span class="o">=</span><span class="s1">'mic check 1 2'</span>
+</code></pre>
+</div>
+
+<p>You should get a ‘Notification successfully posted.’ message. (and a
+popup on your phone, of course!) If the script isn’t working, you’ll
+have to figure out the reason, because nagios depends on it.</p>
+
+<p>Once you’ve ironed all that out, it’s time to configure nagios!</p>
+
+<p>First, you need to set up your contact information. Edit whichever file
+you keep your contacts in, and modify an existing record, or add a new
+one, similar to this:</p>
+
+<div class="language-perl highlighter-rouge"><pre class="highlight"><code><span class="nv">define</span> <span class="nv">contact</span><span class="p">{</span>
+    <span class="nv">contact_name</span>                    <span class="nv">adrian_pager</span>
+    <span class="nv">alias</span>                           <span class="nv">Adrian</span> <span class="nv">Rollett</span>
+    <span class="nv">service_notification_period</span>     <span class="mi">24</span><span class="nv">x7</span>
+    <span class="nv">host_notification_period</span>        <span class="mi">24</span><span class="nv">x7</span>
+    <span class="nv">service_notification_options</span>    <span class="nv">w</span><span class="p">,</span><span class="nv">u</span><span class="p">,</span><span class="nv">c</span><span class="p">,</span><span class="nv">r</span>
+    <span class="nv">host_notification_options</span>       <span class="nv">d</span><span class="p">,</span><span class="nv">u</span><span class="p">,</span><span class="nv">r</span>
+    <span class="nv">service_notification_commands</span>   <span class="nv">notify</span><span class="o">-</span><span class="nv">service</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">prowl</span>
+    <span class="nv">host_notification_commands</span>      <span class="nv">notify</span><span class="o">-</span><span class="nv">host</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">prowl</span>
+    <span class="nv">_prowl_apikey</span>                   <span class="nv">yourAPIkeyGoesHere</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>It is very important that you leave the underscore in front of the
+_prowl_apikey variable, as Nagios’ custom variables <a href="http://nagios.sourceforge.net/docs/3_0/customobjectvars.html">depend on
+it</a>.</p>
+
+<p>Next, you’ll need to add the custom prowl notification commands. Edit
+the appropriate file, and add these commands:</p>
+
+<div class="language-perl highlighter-rouge"><pre class="highlight"><code><span class="nv">define</span> <span class="nv">command</span><span class="p">{</span>
+        <span class="nv">command_name</span> <span class="nv">notify</span><span class="o">-</span><span class="nv">host</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">prowl</span>
+        <span class="nv">command_line</span> <span class="sr">/usr/</span><span class="nv">bin</span><span class="sr">/perl -w /</span><span class="nv">usr</span><span class="sr">/local/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">prowl</span><span class="o">.</span><span class="nv">pl</span> <span class="o">-</span><span class="nv">apikey</span><span class="o">=</span><span class="s">"$_CONTACTPROWL_APIKEY$"</span> <span class="o">-</span><span class="nv">priority</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="nv">application</span><span class="o">=</span><span class="s">"Nagios"</span> <span class="o">-</span><span class="nv">event</span><span class="o">=</span><span class="s">"Host"</span> <span class="o">-</span><span class="nv">notification</span><span class="o">=</span><span class="s">"$HOSTNAME$ $HOSTDESC$ '$HOSTOUTPUT$'"</span>
+<span class="p">}</span>
+ 
+<span class="nv">define</span> <span class="nv">command</span><span class="p">{</span>
+        <span class="nv">command_name</span> <span class="nv">notify</span><span class="o">-</span><span class="nv">service</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">prowl</span>
+        <span class="nv">command_line</span> <span class="sr">/usr/</span><span class="nv">bin</span><span class="sr">/perl -w /</span><span class="nv">usr</span><span class="sr">/local/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">prowl</span><span class="o">.</span><span class="nv">pl</span> <span class="o">-</span><span class="nv">apikey</span><span class="o">=</span><span class="s">"$_CONTACTPROWL_APIKEY$"</span> <span class="o">-</span><span class="nv">priority</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="nv">application</span><span class="o">=</span><span class="s">"Nagios"</span> <span class="o">-</span><span class="nv">event</span><span class="o">=</span><span class="s">"Service"</span> <span class="o">-</span><span class="nv">notification</span><span class="o">=</span><span class="s">"$HOSTNAME$ $SERVICEDESC$ '$SERVICEOUTPUT$'"</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>If your perl binary doesn’t live in /usr/bin, be sure to give the
+correct path. (run ‘which perl’ to find this out if you don’t know)
+If you try to run the prowl.pl script directly, (without using the
+system perl binary) nagios uses its own perl interpreter, and you’ll
+get an error similar to this in the nagios logs:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="k">*</span>ePN failed to compile /usr/local/bin/prowl.pl: <span class="s2">"Missing right curly or square bracket at (eval 1) line 95, at end of line syntax error at (eval 1) line 102, at EOF"</span>
+</code></pre>
+</div>
+
+<p>If you have any trouble, check the nagios debug logs, (you may need to
+turn up the nagios debug level) and try to run the command it’s
+producing as the nagios user.</p>
+
+
+        
+          <hr>
+          
+          
+            
+            
+            
+            
+            
+            <article id="comment1" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Anonymous</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment1" itemprop="url">
+        <time datetime="2010-01-09T15:28:11+00:00" itemprop="datePublished">January 09, 2010 at 03:28 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Just a quick note…</p>
+
+<p>I wanted to let you know this guide helped me a bunch when setting up Nagios to prowl. I was linked here from iNag (which is also an awesome app!)</p>
+
+<p>Thanks for sharing!
+Rob</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment2" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment2" itemprop="url">
+        <time datetime="2010-01-13T13:14:23+00:00" itemprop="datePublished">January 13, 2010 at 01:14 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>glad to hear it…</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment3" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">mig5</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment3" itemprop="url">
+        <time datetime="2010-01-27T04:10:39+00:00" itemprop="datePublished">January 27, 2010 at 04:10 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Hi Adrian,</p>
+
+<p>Just in the middle of setting up the same thing. Thanks for your excellent guide.</p>
+
+<p>Just thought I’d note that if you’re on Debian/Ubuntu, you’ll also need to apt-get install liblwp-useragent-determined-perl if you haven’t got it already, or else Perl will die with this error:</p>
+
+<p><code>
+Can't locate LWP/UserAgent.pm in @INC (@INC contains: /etc/perl /usr/local/lib/perl/5.10.0 /usr/local/share/perl/5.10.0 /usr/lib/perl5 /usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10 /usr/local/lib/site_perl .) at /usr/local/bin/prowl.pl line 33.
+BEGIN failed--compilation aborted at /usr/local/bin/prowl.pl line 33.
+</code></p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment4" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">mig5</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment4" itemprop="url">
+        <time datetime="2010-01-27T04:39:08+00:00" itemprop="datePublished">January 27, 2010 at 04:39 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Sorry, just nitpicking..</p>
+
+<p>Your host command definition in the example is using $SERVICEDESC$ ‘$SERVICEOUTPUT$’ instead of $HOSTDESC$ $HOSTOUTPUT$, these would result in empty variables in the prowl message.</p>
+
+<p>Also the path to your prowl.pl in the command definitions is /usr/local/nagios3/libexec, but previously we wget it to /usr/local/bin</p>
+
+<p>Otherwise, great! Thanks again.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment5" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Jason Price</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment5" itemprop="url">
+        <time datetime="2010-03-10T20:32:33+00:00" itemprop="datePublished">March 10, 2010 at 08:32 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>I recently installed the notify by prowl code.
+I can get the test message through the linux console but, when i run it through nagios it does not work. any ideas?
+Here is the command verbage.</p>
+
+<h1 id="notify-host-by-prowl-command-definition">‘notify-host-by-prowl’ command definition</h1>
+<p>define command{
+	command_name	notify-host-by-prowl
+	command_line	/usr/bin/perl -w /usr/local/bin/prowl.pl -apikey=”$_CONTACTPROWL_APIKEY$” -priority=1 -application=”Nagios” -event=”Host” -notification=”$HOSTNAME$ $HOSTDESC$ ‘$HOSTOUTPUT$’”
+}</p>
+
+<h1 id="notify-service-by-prowl-command-definition">‘notify-service-by-prowl’ command definition</h1>
+<p>define command{
+	command_name	notify-service-by-prowl
+	command_line	/usr/bin/perl -w /usr/local/bin/prowl.pl -apikey=”$_CONTACTPROWL_APIKEY$” -priority=1 -application=”Nagios” -event=”Service” -notification=”$HOSTNAME$ $SERVICEDESC$ ‘$SERVICEOUTPUT$’”
+}</p>
+
+<p>Thanks in advance.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment6" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">shadoe</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment6" itemprop="url">
+        <time datetime="2010-11-11T09:47:35+00:00" itemprop="datePublished">November 11, 2010 at 09:47 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Hi! Thanks for this. Rocks on my system.
+Query about an improvement (that might not be possible).</p>
+
+<p>Prowl on my iPhone let’s me quiet it during nights unless I get an “emergency”. I know I cant priority to 2 and get that. But is it possible, somehow, to set priority based on severity from Nagios?</p>
+
+<p>Ie. Warning = Priority 1, Info = Priority 0, Critical = Priority 2.. If it is possible somehow.. I’d love it. Why? Because I don’t need to run to my computer if it’s a warning or information - only when theres an emergency..</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment7" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment7" itemprop="url">
+        <time datetime="2010-11-11T12:27:17+00:00" itemprop="datePublished">November 11, 2010 at 12:27 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>glad it’s working for you! I can think of two ways to accomplish this - the first would be to write a wrapper script that sets the priority based on the input, and call that instead. The second is what I do - I use nagios escalations so that only the truly critical notifications get sent directly to my phone, and deal with the rest via email.</p>
+
+<p>good luck!</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment8" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">namnoom</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment8" itemprop="url">
+        <time datetime="2011-01-10T01:12:59+00:00" itemprop="datePublished">January 10, 2011 at 01:12 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>thanks!  works like a charm!</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment9" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">warrendt</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment9" itemprop="url">
+        <time datetime="2011-03-31T18:44:48+00:00" itemprop="datePublished">March 31, 2011 at 06:44 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Hey Adrian.</p>
+
+<p>Awesome post, works great. But I am cheap and lazy (well too busy to edit cfg in vi  every time I add a host)</p>
+
+<p>Do you have any idea on how to incorporate prowl into Opsview ? I have tried but for the life of me, the cfg for Opsview is no where near Nagios, or Icinga or Monarch. 
+I have gotten as far as finding where I should put the config for the custom notification, but actually getting it to work is another story.</p>
+
+<p>Cheers for the help.</p>
+
+<p>W</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment10" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">monaco</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment10" itemprop="url">
+        <time datetime="2011-06-09T12:05:10+00:00" itemprop="datePublished">June 09, 2011 at 12:05 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><ol>
+  <li>define contact{</li>
+  <li>contact_name                    adrian_pager</li>
+  <li>alias                           Adrian Rollett</li>
+  <li>service_notification_period     24x7</li>
+  <li>host_notification_period        24x7</li>
+  <li>service_notification_options    w,u,c,r</li>
+  <li>host_notification_options       d,u,r</li>
+  <li>service_notification_commands   notify-service-by-prowl</li>
+  <li>host_notification_commands      notify-host-by-prowl</li>
+  <li><b>_contact</b>_prowl_apikey                   yourAPIkeyGoesHere
+  11.
+          }</li>
+</ol>
+</div>
+  </div>
+</article>
+
+          
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="setting-nagios3-send-prowl-notifications">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/content/quick-recipe-easily-migrate-drupal-installation-cvs" class="btn" title="Quick recipe to easily migrate a drupal installation to CVS">Previous</a>
+      
+      
+        <a href="http://localhost:4000/content/beejpg" class="btn" title="bee.jpg">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Posting to a drupal blog from Vim (with side forays into uploading and free tagging) &#8211; Reluctant Hacker</title>
+<meta name="description" content="So, we are finally getting closer to the long-awaited post (ha!) about
+posting to drupal from vim. I’ve been having a lot of fun making this
+plug-in suit my needs, and making it truly easy to post. Python hasn’t
+been too hard to learn - vim scripting is truly a weird, weird language.
+
+">
+<meta name="keywords" content="drupal, python, xmlrpc, vim">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Posting to a drupal blog from Vim (with side forays into uploading and free tagging)">
+<meta name="twitter:description" content="So, we are finally getting closer to the long-awaited post (ha!) about
+posting to drupal from vim. I’ve been having a lot of fun making this
+plug-in suit my needs, and making it truly easy to post. Python hasn’t
+been too hard to learn - vim scripting is truly a weird, weird language.
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Posting to a drupal blog from Vim (with side forays into uploading and free tagging)">
+<meta property="og:description" content="So, we are finally getting closer to the long-awaited post (ha!) about
+posting to drupal from vim. I’ve been having a lot of fun making this
+plug-in suit my needs, and making it truly easy to post. Python hasn’t
+been too hard to learn - vim scripting is truly a weird, weird language.
+
+">
+<meta property="og:url" content="http://localhost:4000/content/posting-drupal-blog-vim-side-forays-uploading-and-free-tagging">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/content/posting-drupal-blog-vim-side-forays-uploading-and-free-tagging">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#drupal" title="Pages tagged drupal">drupal</a></li><li><a href="http://localhost:4000/tags/#python" title="Pages tagged python">python</a></li><li><a href="http://localhost:4000/tags/#xmlrpc" title="Pages tagged xmlrpc">xmlrpc</a></li><li><a href="http://localhost:4000/tags/#vim" title="Pages tagged vim">vim</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Posting to a drupal blog from Vim (with side forays into uploading and free tagging)</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2008-04-08T05:08:25+00:00"><i class="fa fa-calendar-o"></i> April 08, 2008</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>So, we are finally getting closer to the long-awaited post (ha!) about
+posting to drupal from vim. I’ve been having a lot of fun making this
+plug-in suit my needs, and making it truly easy to post. Python hasn’t
+been too hard to learn - vim scripting is truly a weird, weird language.</p>
+
+<p>Anyway, here is a (very) <a href="http://reluctanthacker.rollett.org/sites/default/files/drupal_blog.vim">rough
+draft</a>
+of the plugin. If you want to use it, place it in your ~/.vim/plugin/
+directory. You will need to apply add1sun’s patch from
+<a href="http://drupal.org/node/224006">http://drupal.org/node/224006</a> to make the blog API work basically at
+all, and you’ll need my patch from <a href="http://drupal.org/node/243907">http://drupal.org/node/243907</a> for
+file/image uploads to work. Tagging isn’t working quite right yet - I
+made kind of a hacky patch, but I think I’m going to have to re-think
+my approach and make a module for that...</p>
+
+<p>quick usage summary:</p>
+
+<ul>
+  <li>:ListPosts 5 will display a (extremely) minimal browser with the 5
+most recent posts. (You can modify the number of posts to suit, or
+leave it off, and it will get the 10 most recent posts)</li>
+  <li>:UploadImage and :UploadFile do what you would expect, with filename
+tab completion, and insert the link to the uploaded file in your
+post.</li>
+  <li>When you’re editing your post, press :w as per usual to save it to
+Drupal.</li>
+</ul>
+
+<p>For your viewing pleasure, a screenshot of me uploading the following
+image:
+<img src="http://reluctanthacker.rollett.org/sites/default/files/Picture%205.png" alt="" /></p>
+
+<p>The one frustrating thing about Vim’s python integration is that it
+won’t display any output from python until the script has completed.
+So, you’re stuck wondering if anything is happening while the upload is
+actually being performed... Small price to pay, I guess!</p>
+
+<p>Well, it’s Time For Bed®, but I’ll post more about the process of
+making this plugin and what I learned along the way soon...</p>
+
+
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="posting-drupal-blog-vim-side-forays-uploading-and-free-tagging">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/paying-uncle-sam" class="btn" title="Paying Uncle Sam">Previous</a>
+      
+      
+        <a href="http://localhost:4000/creating-regex-finding-credit-card-numbers-grep" class="btn" title="Creating a regex for finding credit card numbers with grep">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

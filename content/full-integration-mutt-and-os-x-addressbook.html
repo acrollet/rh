@@ -1,0 +1,284 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Full integration of mutt and the OS X Addressbook &#8211; Reluctant Hacker</title>
+<meta name="description" content="http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/add_address.sh_.txt
+
+">
+<meta name="keywords" content="mac os x, applescript, mutt, email, imap, addressbook, lbdb">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Full integration of mutt and the OS X Addressbook">
+<meta name="twitter:description" content="http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/add_address.sh_.txt
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Full integration of mutt and the OS X Addressbook">
+<meta property="og:description" content="http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/add_address.sh_.txt
+
+">
+<meta property="og:url" content="http://localhost:4000/content/full-integration-mutt-and-os-x-addressbook">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/content/full-integration-mutt-and-os-x-addressbook">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#mac os x" title="Pages tagged mac os x">mac os x</a></li><li><a href="http://localhost:4000/tags/#applescript" title="Pages tagged applescript">applescript</a></li><li><a href="http://localhost:4000/tags/#mutt" title="Pages tagged mutt">mutt</a></li><li><a href="http://localhost:4000/tags/#email" title="Pages tagged email">email</a></li><li><a href="http://localhost:4000/tags/#imap" title="Pages tagged imap">imap</a></li><li><a href="http://localhost:4000/tags/#addressbook" title="Pages tagged addressbook">addressbook</a></li><li><a href="http://localhost:4000/tags/#lbdb" title="Pages tagged lbdb">lbdb</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Full integration of mutt and the OS X Addressbook</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2009-03-23T03:51:34+00:00"><i class="fa fa-calendar-o"></i> March 23, 2009</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/add_address.sh_.txt</p>
+
+<p>So, my experiments with mutt continue. Incidentally, if you think that
+I’m crazy for using a cli email client in this day and age... Well,
+you’re probably right. However, I’m crazy, but not alone, as the
+dearth of great email clients for Mac OS X is something that’s been
+<a href="http://mronge.com/2007/07/06/the-state-of-email/">written about a lot</a>.
+Anyway, that’s a short way of saying that I think that mutt+"a whole
+bunch of utilities to add functionality to it" is a (at least somewhat)
+reasonable solution, given the alternatives.</p>
+
+<p>Anyway, <a href="http://linsec.ca/Using_mutt_on_OS_X">linsec.ca</a> has probably
+the most info there is in one place on integrating mutt with OS X. I
+really like that lbdb gives me the capability to search the OS X
+addressbook, but I also wanted to the ability to add addresses directly
+from mutt. A little bit of dirty hackery with bash and osascript later,
+I have a working solution. This script assumes a working lbdb install,
+but beyond that, all you need to do is add the following line to your
+~/.muttrc and place the attached script in your ~/bin directory. Then,
+press ‘A’ on any message in mutt. The script will search for an
+existing record with the same name, and add the address to that, or
+create a new record if necessary. You will also be prompted to pick a
+label from those currently in use in your addressbook.</p>
+
+<div class="language-bash highlighter-rouge"><pre class="highlight"><code>macro index,pager A <span class="s2">"&lt;pipe-message&gt;/opt/local/bin/lbdb-fetchaddr -x from -d ''&lt;return&gt;&lt;shell-escape&gt;</span><span class="nv">$HOME</span><span class="s2">/bin/add_address.sh&lt;return&gt;"</span> <span class="s2">"add the sender address to os x addressbook"</span>
+</code></pre>
+</div>
+
+        
+          <hr>
+          
+          
+            
+            
+            
+            
+            
+            <article id="comment1" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Robbie</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment1" itemprop="url">
+        <time datetime="2009-11-25T06:24:27+00:00" itemprop="datePublished">November 25, 2009 at 06:24 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text">
+<p>You don’t have permission to access /sites/default/files/add_address.sh_.txt
+on this server.</p>
+
+<p>Apache/2.2.3 (Debian) DAV/2 SVN/1.4.2 PHP/5.2.0-8+etch15 mod_ssl/2.2.3 OpenSSL/0.9.8c Server at reluctanthacker.rollett.org Port 80</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment2" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment2" itemprop="url">
+        <time datetime="2009-11-25T14:42:12+00:00" itemprop="datePublished">November 25, 2009 at 02:42 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>fixed!</p>
+</div>
+  </div>
+</article>
+
+          
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="full-integration-mutt-and-os-x-addressbook">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/content/using-quicklook-image-viewer-mutt" class="btn" title="Using quicklook as an image viewer for mutt">Previous</a>
+      
+      
+        <a href="http://localhost:4000/content/fondue-sauce-pasta" class="btn" title="Fondue Sauce for Pasta">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

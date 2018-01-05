@@ -1,0 +1,296 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Creating a regex for finding credit card numbers with grep &#8211; Reluctant Hacker</title>
+<meta name="description" content="Ugly regex:
+
+">
+<meta name="keywords" content="">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Creating a regex for finding credit card numbers with grep">
+<meta name="twitter:description" content="Ugly regex:
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Creating a regex for finding credit card numbers with grep">
+<meta property="og:description" content="Ugly regex:
+
+">
+<meta property="og:url" content="http://localhost:4000/creating-regex-finding-credit-card-numbers-grep">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/creating-regex-finding-credit-card-numbers-grep">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          
+        </ul>
+        
+          <h1 class="entry-title">Creating a regex for finding credit card numbers with grep</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2008-04-18T20:33:44+00:00"><i class="fa fa-calendar-o"></i> April 18, 2008</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>Ugly regex:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>grep '\(^\|[^0-9]\)\{1\}\([345]\{1\}[0-9]\{3\}\|6011\)\{1\}[-]\?[0-9]\{4\}[-]\?
+       [0-9]\{2\}[-]\?[0-9]\{2\}-\?[0-9]\{1,4\}\($\|[^0-9]\)\{1\}' filename
+</code></pre>
+</div>
+
+<p>Lately, I’ve been working with the security team where I’m employed to
+catch people storing information they shouldn’t be on our database
+server. (SSNs, credit card numbers, etc.) This involved dumping all our
+databases into a flat file (about a gig of text) and doing some mining.
+I was given a pre-built regex, but it didn’t work with grep, I’m
+enough of a command-line geek that I’d rather do things ‘my way’ than
+just write a perl script or something. So, I had to make my own regex to
+find cc numbers, because I didn’t find anything effective in a quick
+search online. This brings to mind a hoary old chestnut of a quote -
+over-used, but still very true:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Some people, when confronted with a problem, think "I know, I'll use regular expressions." 
+Now they have two problems. 
+
+-Jamie Zawinski, in comp.lang.emacs
+</code></pre>
+</div>
+
+<p>All that notwithstanding, I found a few resources that came in handy for
+this project.</p>
+
+<ul>
+  <li><a href="http://www.sitepoint.com/article/card-validation-class-php">This php
+tutorial</a>
+has a very good description of a basic spec for valid cc numbers.</li>
+  <li><a href="http://credit-card-information.elliottback.com/">This page</a> has
+more info on valid numbers, and test numbers for all the major
+companies.</li>
+  <li><a href="http://txt2regex.sourceforge.net/">Txt2regex</a> is a handy
+command-line utility that will ask for information on what you want
+to match, and build regexes of many different formats step-by-step.
+It didn’t do everything for me, but it can be a handy way to get
+close to what you want without having to dive into the man pages...</li>
+  <li><a href="http://www.linux.com/articles/54514">Handy article on gnu grep</a>
+from linux.com - more info just below.</li>
+</ul>
+
+<p>Once you think you’ve got your regex built, gnu grep has some options
+not available in standard versions of grep that are very handy for
+debugging. The -o switch will output only the matched part of the
+string, ex:</p>
+
+<p><img src="http://reluctanthacker.rollett.org/sites/default/files/Picture%2011.png" alt="" /></p>
+
+<p>The --color switch will highlight matches - very handy when you’re
+searching through dense SQL dumps!</p>
+
+<p><img src="http://reluctanthacker.rollett.org/sites/default/files/Picture%2010.png" alt="" /></p>
+
+
+        
+          <hr>
+          
+          
+            
+            
+            
+            
+            
+            <article id="comment1" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Ian</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment1" itemprop="url">
+        <time datetime="2011-01-31T21:49:00+00:00" itemprop="datePublished">January 31, 2011 at 09:49 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>I am trying to understand what the (^|[^0-9]){1} and ($|[^0-9]){1} are for in the expression, The ^ $ seem to be limiting since it must be a credit card on it on line, i not sure what the 0-9 at the start and end are for.</p>
+
+<p>So  the following would seem to be more useful</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>echo “5105105105105100”</td>
+      <td>grep -o ‘([345]{1}[0-9]{3}|6011){1}[ -]\?[0-9]{4}[ -]\?[0-9]{2}[-]\?[0-9]{2}[ -]\?[0-9]{1,4}’</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+  </div>
+</article>
+
+          
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="creating-regex-finding-credit-card-numbers-grep">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/content/posting-drupal-blog-vim-side-forays-uploading-and-free-tagging" class="btn" title="Posting to a drupal blog from Vim (with side forays into uploading and free tagging)">Previous</a>
+      
+      
+        <a href="http://localhost:4000/setting-screens-title-currently-running-process-bash" class="btn" title="Setting Screen's title to the currently running process with bash">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

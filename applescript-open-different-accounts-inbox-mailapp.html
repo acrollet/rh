@@ -1,0 +1,253 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Applescript to open a different account's INBOX in Mail.app &#8211; Reluctant Hacker</title>
+<meta name="description" content="A while ago, I threatened to post this script, and then it slipped my
+mind, mostly because I switched to
+Gyazmail. At any rate, one
+of the most frustrating things about Mail.app to me was having to get
+out the mouse to switch between the inboxes of my various email
+accounts, especially once I got Mail
+Act-On working so nicely. The
+applescript was harder to figure out than it perhaps should have been,
+so here it is in the hopes that it will help someone.
+
+">
+<meta name="keywords" content="mac os x, mail.app, applescript">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Applescript to open a different account's INBOX in Mail.app">
+<meta name="twitter:description" content="A while ago, I threatened to post this script, and then it slipped my
+mind, mostly because I switched to
+Gyazmail. At any rate, one
+of the most frustrating things about Mail.app to me was having to get
+out the mouse to switch between the inboxes of my various email
+accounts, especially once I got Mail
+Act-On working so nicely. The
+applescript was harder to figure out than it perhaps should have been,
+so here it is in the hopes that it will help someone.
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Applescript to open a different account's INBOX in Mail.app">
+<meta property="og:description" content="A while ago, I threatened to post this script, and then it slipped my
+mind, mostly because I switched to
+Gyazmail. At any rate, one
+of the most frustrating things about Mail.app to me was having to get
+out the mouse to switch between the inboxes of my various email
+accounts, especially once I got Mail
+Act-On working so nicely. The
+applescript was harder to figure out than it perhaps should have been,
+so here it is in the hopes that it will help someone.
+
+">
+<meta property="og:url" content="http://localhost:4000/applescript-open-different-accounts-inbox-mailapp">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/applescript-open-different-accounts-inbox-mailapp">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#mac os x" title="Pages tagged mac os x">mac os x</a></li><li><a href="http://localhost:4000/tags/#mail.app" title="Pages tagged mail.app">mail.app</a></li><li><a href="http://localhost:4000/tags/#applescript" title="Pages tagged applescript">applescript</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Applescript to open a different account's INBOX in Mail.app</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2008-06-11T02:02:25+00:00"><i class="fa fa-calendar-o"></i> June 11, 2008</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>A while ago, I threatened to post this script, and then it slipped my
+mind, mostly because I switched to
+<a href="http://reluctanthacker.rollett.org/node/3">Gyazmail</a>. At any rate, one
+of the most frustrating things about Mail.app to me was having to get
+out the mouse to switch between the inboxes of my various email
+accounts, especially once I got <a href="http://www.indev.ca/MailActOn.html">Mail
+Act-On</a> working so nicely. The
+applescript was harder to figure out than it perhaps should have been,
+so here it is in the hopes that it will help someone.</p>
+
+<div class="language-applescript highlighter-rouge"><pre class="highlight"><code><span class="k">tell</span><span class="w"> </span><span class="nb">application</span><span class="w"> </span><span class="s2">"Mail"</span><span class="w">
+        </span><span class="k">set</span><span class="w"> </span><span class="nb">the</span><span class="w"> </span><span class="nv">selected</span><span class="w"> </span><span class="nv">mailboxes</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">the</span><span class="w"> </span><span class="nb">front</span><span class="w"> </span><span class="nv">message</span><span class="w"> </span><span class="nv">viewer</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="p">{</span><span class="nv">mailbox</span><span class="w"> </span><span class="s2">"INBOX"</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nv">account</span><span class="w"> </span><span class="s2">"Gmail"</span><span class="p">}</span><span class="w">
+        </span><span class="nb">delay</span><span class="w"> </span><span class="mf">0.1</span><span class="w">
+        </span><span class="k">set</span><span class="w"> </span><span class="nv">no_selected</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">get</span><span class="w"> </span><span class="nb">count</span><span class="w"> </span><span class="nv">selection</span><span class="w">
+</span><span class="k">end</span><span class="w"> </span><span class="k">tell</span><span class="w">
+ 
+</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nv">no_selected</span><span class="w"> </span><span class="ow">is equal</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">
+        </span><span class="k">tell</span><span class="w"> </span><span class="nb">application</span><span class="w"> </span><span class="s2">"System Events"</span><span class="w">
+                </span><span class="k">set</span><span class="w"> </span><span class="nv">selected</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nv">row</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nv">table</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">scroll</span><span class="w"> </span><span class="nv">area</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nv">splitter</span><span class="w"> </span><span class="nv">group</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="na">window</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="nb">application</span><span class="w"> </span><span class="nv">process</span><span class="w"> </span><span class="s2">"Mail"</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="nv">true</span><span class="w">
+        </span><span class="k">end</span><span class="w"> </span><span class="k">tell</span><span class="w">
+</span><span class="k">end</span><span class="w"> </span><span class="k">if</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Paste the script into Script Editor.app, change Gmail to whatever you
+have your account named, and save it to ~/Library/Scripts. You’ll need
+to use something like <a href="http://www.blacktree.com/">Quicksilver</a> or
+<a href="http://www.red-sweater.com/fastscripts/index.html">FastScripts</a> to set
+up a keyboard shortcut, and then away you go.</p>
+
+
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="applescript-open-different-accounts-inbox-mailapp">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/improvements-vim-drupal-blogging-client" class="btn" title="Improvements to the Vim drupal blogging client ">Previous</a>
+      
+      
+        <a href="http://localhost:4000/drupal-blogapi-client-new-version" class="btn" title="Drupal BlogAPI client - new version">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

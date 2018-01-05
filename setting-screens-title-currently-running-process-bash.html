@@ -1,0 +1,343 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Setting Screen's title to the currently running process with bash &#8211; Reluctant Hacker</title>
+<meta name="description" content="This is the first of a series of at least two posts about how I’ve
+configured the excellent Gnu
+Screen to fit my needs and make me
+more productive.
+
+">
+<meta name="keywords" content="bash, screen, gnu screen, shell scripting, system administration">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Setting Screen's title to the currently running process with bash">
+<meta name="twitter:description" content="This is the first of a series of at least two posts about how I’ve
+configured the excellent Gnu
+Screen to fit my needs and make me
+more productive.
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setting Screen's title to the currently running process with bash">
+<meta property="og:description" content="This is the first of a series of at least two posts about how I’ve
+configured the excellent Gnu
+Screen to fit my needs and make me
+more productive.
+
+">
+<meta property="og:url" content="http://localhost:4000/setting-screens-title-currently-running-process-bash">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/setting-screens-title-currently-running-process-bash">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#bash" title="Pages tagged bash">bash</a></li><li><a href="http://localhost:4000/tags/#screen" title="Pages tagged screen">screen</a></li><li><a href="http://localhost:4000/tags/#gnu screen" title="Pages tagged gnu screen">gnu screen</a></li><li><a href="http://localhost:4000/tags/#shell scripting" title="Pages tagged shell scripting">shell scripting</a></li><li><a href="http://localhost:4000/tags/#system administration" title="Pages tagged system administration">system administration</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Setting Screen's title to the currently running process with bash</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2008-05-31T16:49:54+00:00"><i class="fa fa-calendar-o"></i> May 31, 2008</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <p>This is the first of a series of at least two posts about how I’ve
+configured the excellent <a href="http://www.gnu.org/software/screen/">Gnu
+Screen</a> to fit my needs and make me
+more productive.</p>
+
+<p>My workflow tends to be fairly disjointed, simply because I tend to do a
+mix of system administration and programming, with user requests
+scattered through the day. I decided to start using screen at work
+because I was having a number of connection dropouts, and having to
+start from scratch quite often. It’s important for me to have a visual
+cue of what’s going on in each virtual terminal, as I’ll often have 6
+or 7 or more tasks going at once. Given that I’m not bloody likely to
+manually change the title each time I start a task, I needed a way to
+automatically do so. <a href="http://aperiodic.net/screen/titles">This page</a>
+from the excellent screen faq on
+<a href="http://www.aperiodic.net/screen/">aperiodic.net</a> has instructions that
+tell you how to use a clever combination of the shelltitle screen
+configuration and a bash prompt setting to let you set the title to the
+current running process. However, this just gives the process name, and
+not arguments - so, I would have three shells titled ‘vi’, and another
+four titled ‘ssh’. Not so much use, not knowing what I’m editing, or
+what hosts I’m logged onto. Unfortunately, bash doesn’t have a
+preexec() built-in like zsh does. I suppose that I could switch to zsh,
+but I’m ornery.</p>
+
+<p>However, I did find an excellent post on
+<a href="http://www.davidpashley.com/articles/xterm-titles-with-bash.html">davidpashley.com</a>
+that gave me the key. An extremely clever use of a trap will let you
+emulate zsh’s preexec function and run whatever you like just before
+each command is executed. Here’s how I modified his code:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>case "$TERM" in
+  screen)
+      set -o functrace
+      trap 'echo -ne "\ek\$:${BASH_COMMAND:0:20}\e\\"' DEBUG
+      export PS1='\[\033k$:\W\033\\\]\u@\h:\w\$ '
+    ;;
+  *)
+    ;;
+esac
+</code></pre>
+</div>
+
+<p>Finally, here’s the obligatory screenshot.</p>
+
+<p><img src="http://reluctanthacker.rollett.org/sites/default/files/Picture%2013.png" alt="" /></p>
+
+
+        
+          <hr>
+          
+          
+            
+            
+            
+            
+            
+            <article id="comment1" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">coolix</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment1" itemprop="url">
+        <time datetime="2008-06-02T22:03:08+00:00" itemprop="datePublished">June 02, 2008 at 10:03 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>I’m glad i found this page. I was desperately trying to do something like this.
+I have a few questions:
+echo -ne “\ek${1%% *}\e\” &lt;- I know what that does, but what is it for ?
+echo -n ‘’ &lt;- why echoing and empty string ?</p>
+
+<p>Also i see you mixed \e and \033 depending on the context (both ESC command) and you’re a 100% right because using \e in PS1 doesn’t work as expected. Do you know why ?</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment2" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment2" itemprop="url">
+        <time datetime="2008-06-06T01:35:13+00:00" itemprop="datePublished">June 06, 2008 at 01:35 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>sorry I didn’t notice this comment until now, need to set up email notifications!</p>
+
+<p>questions 1 and 2 - good question! Neither are necessary, and must have been a result of the different things I tried while I was getting this to work… I’ll modify the code sample, thanks!</p>
+
+<p>question 3 - the reason (I think) that \e doesn’t work in PS1 is because it is an escape only understood by bash’s ‘echo’ built-in, and not interpreted in prompts. (see the section on echo in the bash man page)</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment3" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">shuple</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment3" itemprop="url">
+        <time datetime="2011-08-14T02:28:50+00:00" itemprop="datePublished">August 14, 2011 at 02:28 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Is it possible to view the host name and command while you are logged into a different server? For example, when I run screen on server A, then ssh into server B, the screen title stays as ssh server B.</p>
+</div>
+  </div>
+</article>
+
+          
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="setting-screens-title-currently-running-process-bash">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/creating-regex-finding-credit-card-numbers-grep" class="btn" title="Creating a regex for finding credit card numbers with grep">Previous</a>
+      
+      
+        <a href="http://localhost:4000/improvements-vim-drupal-blogging-client" class="btn" title="Improvements to the Vim drupal blogging client ">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

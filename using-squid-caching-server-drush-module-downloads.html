@@ -1,0 +1,734 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Using squid as a caching server for drush module downloads &#8211; Reluctant Hacker</title>
+<meta name="description" content="Intro
+
+">
+<meta name="keywords" content="drupal, drush, proxy">
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Using squid as a caching server for drush module downloads">
+<meta name="twitter:description" content="Intro
+
+">
+<meta name="twitter:site" content="@acrollet">
+<meta name="twitter:creator" content="@acrollet">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://localhost:4000/images/">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using squid as a caching server for drush module downloads">
+<meta property="og:description" content="Intro
+
+">
+<meta property="og:url" content="http://localhost:4000/using-squid-caching-server-drush-module-downloads">
+<meta property="og:site_name" content="Reluctant Hacker">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/using-squid-caching-server-drush-module-downloads">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Reluctant Hacker Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<!-- Webfonts -->
+<script src="https://use.edgefonts.net/source-sans-pro:n2,i2,n3,i3,n4,i4,n6,i6,n7,i7,n9,i9;source-code-pro:n4,n7;volkhov.js"></script>
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+  <script src="http://localhost:4000/assets/js/vendor/html5shiv.min.js"></script>
+  <script src="http://localhost:4000/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://localhost:4000/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+
+<!-- MathJax -->
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body id="post">
+
+<div class="navigation-wrapper">
+	<nav role="navigation" id="site-nav" class="animated drop">
+	    <ul>
+      
+		    
+		    <li><a href="http://localhost:4000/about/" >About</a></li>
+		  
+		    
+		    <li><a href="http://localhost:4000/blog/" >Blog</a></li>
+		  
+	    </ul>
+	</nav>
+</div><!-- /.navigation-wrapper -->
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+<header class="masthead">
+	<div class="wrap">
+      
+      <h1 class="site-title animated fadeIn"><a href="http://localhost:4000/">Reluctant Hacker</a></h1>
+		<h2 class="site-description animated fadeIn" itemprop="description">Adrian Rollett's blog</h2>
+	</div>
+</header><!-- /.masthead -->
+
+<div class="js-menu-screen menu-screen"></div>
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    
+    <div class="entry-wrapper">
+      <header class="entry-header">
+        <ul class="entry-tags">
+          <li><a href="http://localhost:4000/tags/#drupal" title="Pages tagged drupal">drupal</a></li><li><a href="http://localhost:4000/tags/#drush" title="Pages tagged drush">drush</a></li><li><a href="http://localhost:4000/tags/#proxy" title="Pages tagged proxy">proxy</a></li>
+        </ul>
+        
+          <h1 class="entry-title">Using squid as a caching server for drush module downloads</h1>
+        
+      </header>
+      <footer class="entry-meta">
+        
+        
+          <img src="http://localhost:4000/images/bio-photo.jpg" class="bio-photo" alt="Adrian Rollett bio photo"/>
+        
+        <span class="author vcard">By <span class="fn">Adrian Rollett</span></span>
+        <span class="entry-date date published"><time datetime="2010-02-25T18:07:36+00:00"><i class="fa fa-calendar-o"></i> February 25, 2010</time></span>
+        
+        
+        
+      </footer>
+      <div class="entry-content">
+        <h2 id="intro">Intro</h2>
+
+<p>Due to <a href="http://drupal.org/node/698104#comment-2645318">popular request</a>,
+I’ve decided to quickly document how we at <a href="https://webadmin.unt.edu">UNT Web
+support</a> use
+<a href="http://www.squid-cache.org/">squid</a> as a proxy caching server for
+<a href="http://drupal.org/project/drush">drush</a>. The main goal was to speed up
+module updates, and reduce the load on drupal.org and UNT’s internet
+connection. The instructions are based on my memory, and are for
+<a href="http://debian.org">Debian</a>, so there may be gaps here and there
+depending on your experience/OS.</p>
+
+<h2 id="squid-setup">Squid Setup</h2>
+
+<p>Installation was super-simple. (gotta love apt)</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>apt-get install squid3
+</code></pre>
+</div>
+
+<p>Configuration was also quite simple. Basically, the debian package for
+squid is setup fairly nicely as a proxy caching server out of the box,
+and you need only configure access. First, add an acl in
+/etc/squid3/squid.conf for your local network, something like the
+following:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>acl localnet src 192.168.0.0/16 <span class="c"># RFC1918 possible internal network</span>
+</code></pre>
+</div>
+
+<p>(make sure to change the subnet to match your network) Next, add a rule
+allowing access from the local network you just defined:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>http_access allow localnet
+</code></pre>
+</div>
+
+<p>(If your squid server is on the same box as your drush installation, you
+just need to allow localhost)</p>
+
+<p>Restart squid, and away you go.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>/etc/init.d/squid3 restart
+</code></pre>
+</div>
+
+<h2 id="using-drush-with-squid">Using drush with squid</h2>
+
+<p>To make drush use squid, simply do the following:</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="nv">http_proxy</span><span class="o">=</span><span class="s2">"http://squid-host.example.com:3128/"</span> php /usr/local/drush/drush.php dl cck
+</code></pre>
+</div>
+
+<p>(You’ll probably want to add an alias)</p>
+
+<h2 id="is-it-working">Is it working?</h2>
+
+<p>Let’s try and download the
+<a href="http://drupal.org/project/inlinetags">inlinetags</a> module.</p>
+
+<div class="language-sh highlighter-rouge"><pre class="highlight"><code>drush-host <span class="c"># http_proxy="&lt;a href="http://squid-host.example.com:3128/""&gt;http://squid-host.example.com:3128/"&lt;/a&gt; php /usr/local/drush/drush.php dl inlinetags</span>
+squid-host <span class="c"># tail -f /var/log/squid3</span>
+1267120330.674    273 192.168.208.29 TCP_MISS/200 8952 GET &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">"http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz"</span>&gt;http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz&lt;/a&gt; - DIRECT/140.211.166.142 application/x-gzip
+</code></pre>
+</div>
+
+<p>So, we can tell from the log that the request came into squid, but did
+not find the object cached. So far so good. Let’s try again:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>drush-host # http_proxy="&lt;a href="http://squid-host.example.com:3128/""&gt;http://squid-host.example.com:3128/"&lt;/a&gt; php /usr/local/drush/drush.php dl inlinetags
+squid-host # tail -f /var/log/squid3
+1267121152.216      0 192.168.208.29 TCP_HIT/200 8960 GET &lt;a href="http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz"&gt;http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz&lt;/a&gt; - NONE/- application/x-gzip
+</code></pre>
+</div>
+
+<p>Good news! This time the request never went out to drupal.org. That’s
+all I have for now, hope it helps someone. Please feel free to comment
+if you have difficulties with these instructions. (or success!)</p>
+
+        
+          <hr>
+          
+          
+            
+            
+            
+            
+            
+            <article id="comment1" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">adrinux</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment1" itemprop="url">
+        <time datetime="2010-04-29T22:24:12+00:00" itemprop="datePublished">April 29, 2010 at 10:24 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Thanks for taking the time to write this. I just did the setup on ubuntu 9.10, the only thing different was the log files, I had to do <code>sudo tail -f /var/log/squid3/access.log</code>.</p>
+
+<p>Seems to be working. Now to try it with drush. :)</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment2" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">jhedstrom</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment2" itemprop="url">
+        <time datetime="2010-09-09T16:45:03+00:00" itemprop="datePublished">September 09, 2010 at 04:45 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Thanks for this post. It took me a while to get it to automatically work for drush (eg, w/o having to type the full http_proxy=… bit above). The missing piece was to add
+<code>
+http_proxy=http://localhost:3128
+ftp_proxy=http://localhost:3128
+use_proxy=on
+</code>
+to my .wgetrc file.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment3" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment3" itemprop="url">
+        <time datetime="2010-09-09T17:09:35+00:00" itemprop="datePublished">September 09, 2010 at 05:09 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>ah, thanks for filling in that piece of information - I just use an alias for drush, so I haven’t thought about it again…</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment4" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">fago</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment4" itemprop="url">
+        <time datetime="2010-09-13T15:48:49+00:00" itemprop="datePublished">September 13, 2010 at 03:48 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>apt-get install squid3
+sudo edit /etc/environment</p>
+
+<blockquote>
+  <p>add the following line:
+http_proxy=”http://localhost:3128”</p>
+</blockquote>
+
+<blockquote>
+  <p>done</p>
+</blockquote>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment5" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">C.Lee Taylor</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment5" itemprop="url">
+        <time datetime="2010-10-28T09:00:51+00:00" itemprop="datePublished">October 28, 2010 at 09:00 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Greetings …</p>
+
+<p>This is an awesome idea, but if you using Aegir, you can’t really pass proxy details to drush and you can’t alias it either, because the aegir user account is not really a shell, for security reasons.</p>
+
+<p>So, what I did was setup iptables, to forward all outbound http traffic to squid, using the following commands …</p>
+
+<p>iptables -t nat -F  # clear table</p>
+
+<h1 id="normal-transparent-proxy">normal transparent proxy</h1>
+<p>iptables -t nat -A PREROUTING -p tcp -i eth0 –dport 80 -j REDIRECT –to-port 3127</p>
+
+<h1 id="handle-connections-on-the-same-box-squidip-is-a-loopback-instance">handle connections on the same box (SQUIDIP is a loopback instance)</h1>
+<p>gid=<code class="highlighter-rouge">id -g proxy</code>
+iptables -t nat -A OUTPUT -p tcp –dport 80 -m owner –gid-owner $gid -j ACCEPT
+iptables -t nat -A OUTPUT -p tcp –dport 80 -j DNAT –to-destination SQUIDIP:3127</p>
+
+<p>Complete details at … http://wiki.squid-cache.org/ConfigExamples/Intercept/LinuxLocalhost</p>
+
+<p>Hope that helps other people.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment6" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Andy Chapman</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment6" itemprop="url">
+        <time datetime="2011-01-07T13:37:16+00:00" itemprop="datePublished">January 07, 2011 at 01:37 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>The excellent and free <a href="http://web.me.com/adg/squidman/index.html">SquidMan</a> makes this very easy to set up on a Mac. Make sure you select a cache size on the SquidMan Preferences/General pane.</p>
+
+<p>Note that OS X doesn’t come with wget so proxy settings go in ~/.curlrc - e.g.:
+<code>
+proxy localhost:3128
+</code></p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment7" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">George Hazlewood</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment7" itemprop="url">
+        <time datetime="2011-01-27T10:22:51+00:00" itemprop="datePublished">January 27, 2011 at 10:22 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>I got this setup working under OS X with MacPorts like this:</p>
+
+<p><code>sudo port install squid3</code></p>
+
+<p>wait a bit while it builds then make squid load as a daemon with</p>
+
+<p><code>sudo port load squid3</code></p>
+
+<p>and you can get wget (and hence drush) to use squid by creating a .wgetrc file with the suggested</p>
+
+<p><code>
+http_proxy=http://localhost:3128
+ftp_proxy=http://localhost:3128
+use_proxy=on
+</code></p>
+
+<p>You can see all the action with a quick:</p>
+
+<p><code>sudo tail /opt/local/var/squid/logs/access.log</code></p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment8" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Anonymous</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment8" itemprop="url">
+        <time datetime="2011-03-04T19:05:46+00:00" itemprop="datePublished">March 04, 2011 at 07:05 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Can you format the article a bit? It is practically illegible.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment9" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">acrollet</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment9" itemprop="url">
+        <time datetime="2011-03-04T21:49:22+00:00" itemprop="datePublished">March 04, 2011 at 09:49 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>whoops, site upgrade hosed the geshi library. thanks, fixed now.</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment10" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">patcon</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment10" itemprop="url">
+        <time datetime="2011-05-01T19:02:52+00:00" itemprop="datePublished">May 01, 2011 at 07:02 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Oh man, this’ll definitely come in handy!</p>
+
+<p>Thanks Lee. Or… “C”?
+Err… Thanks, C. Lee Talyor! :)</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment11" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Bob Kepford</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment11" itemprop="url">
+        <time datetime="2011-08-08T17:06:04+00:00" itemprop="datePublished">August 08, 2011 at 05:06 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Anyone had any luck installing squid on OSX using Homebrew?</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment12" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">thedavidmeister</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment12" itemprop="url">
+        <time datetime="2011-08-10T11:44:56+00:00" itemprop="datePublished">August 10, 2011 at 11:44 AM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>thanks, drush was hanging until i added this to my .wgetrc file.</p>
+
+<p>for me drush make wanted to use cURL, so when aegir tried to set up new platforms for me they’d hang or fail.</p>
+
+<p>i made a .curlrc file that was basically the same as the .wgetrc file suggested by jhedstrom</p>
+
+<p>more info here: http://drupal.org/node/270963#comment-2544452</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment13" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">patcon</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment13" itemprop="url">
+        <time datetime="2011-09-17T22:31:21+00:00" itemprop="datePublished">September 17, 2011 at 10:31 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Hmmm… in the squid3 access.log, I seem to be getting TCP_CLIENT_REFRESH_MISS for all modules when I use the alias:
+drush=”http_proxy=http://localhost:3128 drush”</p>
+
+<p>Funny, cause when we specify a direct git repo in the make file, then we get a TCP_HIT, but it misses for everything else…</p>
+
+<p>but hey, drush dl works fine, it’s just drush make that’s giving issue :S</p>
+
+<p>Just posting in case someone else gets the same problem!</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment14" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name"></span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment14" itemprop="url">
+        <time datetime="2012-03-05T14:24:10+00:00" itemprop="datePublished">March 05, 2012 at 02:24 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>bc781ec37a760a6ffc97bac3f0a2a4b3 Hi Guys, I am newbie in the internet stuff and I dont know if I am writing on correct board on this website. I
+have got problem with activating my account. I received email but when I click on the link it was not working, is this link is correct?  <a href="http://reluctanthacker.rollett.org/?9859eacd0245">http://reluctanthacker.rollett.org/?9859eacd0245</a>,</p>
+</div>
+  </div>
+</article>
+
+          
+            
+            
+            
+            
+            
+            <article id="comment15" class="js-comment comment" itemprop="comment" itemscop itemtype="http://schema.org/Comment">
+  <div class="comment__content-wrapper">
+    <h3 class="comment__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      
+        <a rel="nofollow" href=""><span itemprop="name">Anonymous</span></a>
+      
+    </h3>
+    <div class="comment__date">
+      
+        <a href="#comment15" itemprop="url">
+        <time datetime="2012-04-17T15:27:25+00:00" itemprop="datePublished">April 17, 2012 at 03:27 PM</time>
+        </a>
+      
+    </div>
+    <div itemprop="text"><p>Just a friendly heads up about drush 5.x caching:
+http://drupal.org/node/1473006#comment-5881814</p>
+</div>
+  </div>
+</article>
+
+          
+        
+        <hr>
+        <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
+          <input name="options[slug]" type="hidden" value="using-squid-caching-server-drush-module-downloads">
+          <label><input name="fields[name]" type="text">Name</label>
+          <label><input name="fields[email]" type="email">E-mail</label>
+          <label><textarea name="fields[message]"></textarea>Message</label>
+          <button type="submit">Post Comment</button>
+        </form>
+        
+      </div><!-- /.entry-content -->
+    </div><!-- /.entry-wrapper -->
+    <nav class="pagination" role="navigation">
+      
+        <a href="http://localhost:4000/argyle-tx" class="btn" title="Argyle, TX">Previous</a>
+      
+      
+        <a href="http://localhost:4000/souffl%C3%A9" class="btn" title="Soufflé">Next</a>
+      
+    </nav><!-- /.pagination -->
+  </article>
+
+</div><!-- /#main -->
+
+<div class="footer-wrapper">
+  <footer role="contentinfo" class="entry-wrapper">
+    
+
+<span>&copy; 2018 Adrian Rollett. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="https://mademistakes.com/work/so-simple-jekyll-theme/" rel="nofollow">So Simple Theme</a>.</span>
+<div class="social-icons">
+	<a href="https://twitter.com/acrollet" title="Adrian Rollett on Twitter" target="_blank"><i class="fa fa-twitter-square fa-2x"></i></a>
+	
+	
+	
+	
+	<a href="https://instagram.com/adrian.rollett" title="Adrian Rollett on Instagram" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+	
+	<a href="https://github.com/acrollet" title="Adrian Rollett on Github" target="_blank"><i class="fa fa-github-square fa-2x"></i></a>
+	
+  
+	
+  <a href="http://localhost:4000/feed.xml" title="Atom/RSS feed"><i class="fa fa-rss-square fa-2x"></i></a>
+</div><!-- /.social-icons -->
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+<script type="text/javascript">
+  var BASE_URL = 'http://localhost:4000';
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://localhost:4000/assets/js/scripts.min.js"></script>
+
+
+
+
+</body>
+</html>

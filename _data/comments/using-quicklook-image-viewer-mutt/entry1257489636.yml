@@ -1,9 +1,0 @@
----
-_id: 5a46d90e686d0
-name: Anonymous
-email: d41d8cd98f00b204e9800998ecf8427e
-message: I know you didn't like using X11 tunneled over SSH, but try again using the
-  image viewer "feh".  http://linuxbrit.co.uk/software/feh/  It seems to be designed
-  for this purpose - lightweight but flexable, using imlib2 instead of gtk or qt.
-date: "1257489636"
-...
