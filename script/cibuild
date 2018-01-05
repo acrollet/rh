@@ -19,6 +19,9 @@ git clone https://${GH_TOKEN}@github.com/acrollet/rh.git --branch gh-pages _site
 # build with Jekyll into "_site"
 JEKYLL_ENV=production bundle exec jekyll build
 
+# Add CNAME file
+echo "reluctanthacker.rollett.org" > _site/CNAME
+
 # push
 cd _site
 git config user.email "acrollet@gmail.com"
