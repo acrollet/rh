@@ -1,0 +1,66 @@
+#!/bin/bash
+
+ADDRESS=$( tail -1 ~/.lbdb/m_inmail.list | cut -f 1 )
+NAME=$( tail -1 ~/.lbdb/m_inmail.list | cut -f 2- )
+if echo $NAME|grep -q ','
+then
+  LAST=$( echo $NAME | cut -d\, -f 1 )
+  FIRST=$( echo $NAME | cut -d\, -f 2 )
+else
+  LAST=$( echo $NAME | awk '{print $NF}' )
+  FIRST=$( echo $NAME | awk '{print $1}' )
+fi
+
+# get labels currently in use - to add another, you need to do so in address book itself
+AVAILABLE_LABELS=$( osascript -e "tell application \"Address Book\" to label of emails of every person"|sed 's/,/\
+/g'|sort|uniq|grep -v '^$'|sed 's/\ //g' )
+AVAILABLE_LABELS=( $AVAILABLE_LABELS )
+
+PERSONID=$( osascript -e "tell application \"Address Book\" to set thePeople to every person whose last name = \"$LAST\" and first name = \"$FIRST\" and value of emails contains \"$ADDRESS\" " ) >/dev/null
+if [[ "$PERSONID" != '' ]]
+then
+  echo 'this record already exists, exiting!'
+  exit 1
+fi
+
+PERSONID=$( osascript -e "tell application \"Address Book\" to set thePeople to the first person whose last name = \"$LAST\" and first name = \"$FIRST\"" ) >& /dev/null
+if [[ "$PERSONID" != '' ]]
+then
+  echo 'Found existing addresses:'
+  LABELS=$( osascript -e "tell application \"Address Book\" to label of emails of (the first person whose last name = \"$LAST\" and first name = \"$FIRST\")" )
+  EMAILS=$( osascript -e "tell application \"Address Book\" to value of emails of (the first person whose last name = \"$LAST\" and first name = \"$FIRST\")" )
+  echo $LABELS
+  echo $EMAILS
+  echo
+else
+  # there was not a person in the db, so we have to create a new record
+  osascript -e "tell application \"Address Book\" to make new person with properties {first name:\"$FIRST\", last name:\"$LAST\"}" >/dev/null
+fi
+
+# now we go about the business of actually associating the address with the person
+for (( i = 0 ; i < ${#AVAILABLE_LABELS[@]} ; i++ ))
+do
+  echo "($i) ${AVAILABLE_LABELS[$i]}"
+done
+if [ "$i" -gt 0 ]
+then
+  LABELNUM=-1
+  while [[ "$LABELNUM" -lt 0 ]]
+  do
+    echo -n "Please enter the number of the label you wish to use for address $ADDRESS: "
+    echo -n "[0] "
+    read LABELNUM
+    if [[ "$LABELNUM" -gt $(($i - 1)) ]]
+    then
+      echo 'invalid label number, please try again!'
+      LABELNUM=-1
+    fi
+  done
+fi
+LABEL=${AVAILABLE_LABELS[$LABELNUM]}
+
+osascript -e "tell application \"Address Book\" to set thePerson to the first person whose last name = \"$LAST\" and first name = \"$FIRST\"" -e "tell application \"Address Book\" to tell thePerson to make new email at end of emails with properties {label:\"$LABEL\", value:\"$ADDRESS\"}" >/dev/null
+osascript -e "tell application \"Address Book\" to save addressbook"
+echo "Added $ADDRESS!"
+# osascript -e "tell application \"Address Book\" to value of emails of (the first person whose last name = \"$LAST\" and first name = \"$FIRST\")"|awk -F\, '{print $NF "!"}'
+sleep 1
