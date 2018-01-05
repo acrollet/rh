@@ -1,0 +1,4 @@
+<LimitExcept OPTIONS>
+  order deny,allow
+  deny from all
+</LimitExcept>
