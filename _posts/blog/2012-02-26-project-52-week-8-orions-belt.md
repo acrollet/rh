@@ -8,7 +8,7 @@ permalink: /project-52-week-8-orions-belt
 
 
 
-[![](/sites/default/files/images/orion_stacked.jpg){width="680px"}](/sites/default/files/images/orion.png)
+[![](/sites/default/files/images/orion_stacked.jpg)](/sites/default/files/images/orion.png)
 
 Inspired by a combination of having recently read a [fantastic book
 about the Palomar
