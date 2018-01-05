@@ -10,11 +10,11 @@ Intro
 -----
 
 Due to [popular request](http://drupal.org/node/698104#comment-2645318),
-I\'ve decided to quickly document how we at [UNT Web
+I've decided to quickly document how we at [UNT Web
 support](https://webadmin.unt.edu) use
 [squid](http://www.squid-cache.org/) as a proxy caching server for
 [drush](http://drupal.org/project/drush). The main goal was to speed up
-module updates, and reduce the load on drupal.org and UNT\'s internet
+module updates, and reduce the load on drupal.org and UNT's internet
 connection. The instructions are based on my memory, and are for
 [Debian](http://debian.org), so there may be gaps here and there
 depending on your experience/OS.
@@ -72,7 +72,7 @@ Is it working?
 --------------
 
 Let's try and download the
-[inlinetags](http://drupal.org/project/inlinetags) module.\
+[inlinetags](http://drupal.org/project/inlinetags) module.
 
 
 ``` sh
@@ -83,7 +83,7 @@ squid-host # tail -f /var/log/squid3
 
 
 So, we can tell from the log that the request came into squid, but did
-not find the object cached. So far so good. Let\'s try again:
+not find the object cached. So far so good. Let's try again:
 
 
 ```
@@ -93,6 +93,6 @@ squid-host # tail -f /var/log/squid3
 ```
 
 
-Good news! This time the request never went out to drupal.org. That\'s
+Good news! This time the request never went out to drupal.org. That's
 all I have for now, hope it helps someone. Please feel free to comment
 if you have difficulties with these instructions. (or success!)

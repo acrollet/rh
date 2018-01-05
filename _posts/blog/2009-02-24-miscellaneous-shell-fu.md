@@ -10,7 +10,7 @@ Not too much to share today - just a couple neat little things I ran
 across over the past couple of days, to wit:
 
 if you give chown a user with a trailing colon, it will automatically
-use that user\'s default group. ex:
+use that user's default group. ex:
 
 ``` sh
 root@rollett:~/blog# touch t

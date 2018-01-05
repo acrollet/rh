@@ -8,7 +8,7 @@ permalink: /commenting
 
 
 
-I\'ve spent a bit of time this evening working on simplifying the
+I've spent a bit of time this evening working on simplifying the
 comment form, hope this makes it easier to leave comments!
 
 

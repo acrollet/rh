@@ -9,7 +9,7 @@ permalink: /content/taking-notes-bash-vim
 
 
 A co-worker sold me on the utility of having a program like
-[Yojimbo](http://www.barebones.com/products/yojimbo/). However, I\'m too
+[Yojimbo](http://www.barebones.com/products/yojimbo/). However, I'm too
 cheap to shell out the \$39 for a license, and I prefer to have vi key
 bindings, and complete keyboard control. I found an excellent post at
 [make-believe.org](http://www.make-believe.org/in-words/post/bashing-out-notes)
@@ -80,7 +80,7 @@ complete -o nospace -F _notes copynote
 ```
 
 
-Now, here\'s the other piece. Put this in your .vimrc:
+Now, here's the other piece. Put this in your .vimrc:
 
     let g:netrw_hide=1
     let g:netrw_list_hide='\.tags$,^\..*'
@@ -107,11 +107,11 @@ v98 did not work for me)
        return 0
     endfun
 
-Now, when you type \'notes\' at the prompt, you\'ll get this view:
+Now, when you type 'notes' at the prompt, you'll get this view:
 
-![](http://reluctanthacker.rollett.org/sites/default/files/images/Picture%2013.preview.png)\
-\
-Place the cursor over the note you wish to edit, press \'x\', and it
+![](http://reluctanthacker.rollett.org/sites/default/files/images/Picture%2013.preview.png)
+
+Place the cursor over the note you wish to edit, press 'x', and it
 will open up the split-pane view with the note and tag files. I welcome
 suggestions for improvements!
 

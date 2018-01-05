@@ -8,9 +8,9 @@ permalink: /content/test-entry
 
 
 
-I\'m posting this from vim with a plugin taken from
+I'm posting this from vim with a plugin taken from
 [yyhh.org](http://yyhh.org/blog/2007/10/posting-blog-entry-drupal-within-vim).
-If you can read this, it\'s working ;-)\
+If you can read this, it's working ;-)
 Update: My modifications are coming along - the following image was
 uploaded from Vim\...
 ![](http://reluctanthacker.rollett.org/sites/default/files/Picture%203_5.png){width="682"

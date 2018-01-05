@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Applescript to open a different account\'s INBOX in Mail.app"
+title: "Applescript to open a different account's INBOX in Mail.app"
 date: 2008-06-11 02:02:25 +0000
 tags: ["mac os x", "mail.app", "applescript"]
 permalink: /applescript-open-different-accounts-inbox-mailapp
@@ -35,7 +35,7 @@ end if
 
 
 Paste the script into Script Editor.app, change Gmail to whatever you
-have your account named, and save it to \~/Library/Scripts. You\'ll need
+have your account named, and save it to \~/Library/Scripts. You'll need
 to use something like [Quicksilver](http://www.blacktree.com/) or
 [FastScripts](http://www.red-sweater.com/fastscripts/index.html) to set
 up a keyboard shortcut, and then away you go.

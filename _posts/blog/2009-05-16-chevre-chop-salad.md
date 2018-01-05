@@ -12,20 +12,20 @@ I made this the other night from what looked good and was on sale at the
 store, and it turned out pretty well - so, I thought I would share what
 I came up with.
 
-Ingredients:\
-1 head Romaine lettuce\
-1 good sized tomato\
-2-3 oz. Chevre (goat cheese)\
-3-4 pieces bacon\
-1 small avocado\
-mustard powder\
-garlic powder\
-cayenne pepper\
-nutmeg\
-italian seasoning\
-salt\
-pepper\
-olive oil\
+Ingredients:
+1 head Romaine lettuce
+1 good sized tomato
+2-3 oz. Chevre (goat cheese)
+3-4 pieces bacon
+1 small avocado
+mustard powder
+garlic powder
+cayenne pepper
+nutmeg
+italian seasoning
+salt
+pepper
+olive oil
 balsamic vinegar
 
 Cook bacon. Wash Lettuce, and chop the head into 3/4 inch wide strips.

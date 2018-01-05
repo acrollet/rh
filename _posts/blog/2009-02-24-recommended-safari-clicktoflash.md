@@ -10,7 +10,7 @@ permalink: /content/recommended-safari-clicktoflash
 
 Trying out the new [Safari 4
 beta](http://www.apple.com/safari/download/) today. Working very nicely
-so far - fast, light on cpu, etc. Still, I don\'t know if I can go on
+so far - fast, light on cpu, etc. Still, I don't know if I can go on
 for too long without
 [vimperator](http://vimperator.org/trac/wiki/Vimperator)! Anyway, the
 point of this post was to recommend

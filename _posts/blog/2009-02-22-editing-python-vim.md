@@ -10,7 +10,7 @@ permalink: /content/editing-python-vim
 
 Found a nice post on this kind of stuff
 [here.](http://blog.sontek.net/2008/05/11/python-with-a-modular-ide-vim/)
-I haven\'t implemented all of it by any means, but the omnifunc code
+I haven't implemented all of it by any means, but the omnifunc code
 completion and
 [snippetsEmu](http://www.vim.org/scripts/script.php?script_id=1318) are
 quite nice. Also did my own hacky perversion of the :make command.

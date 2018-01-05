@@ -8,7 +8,7 @@ permalink: /paying-uncle-sam
 
 
 
-Well, I\'m working on taxes today, so \"normal\" posting will resume
+Well, I'm working on taxes today, so \"normal\" posting will resume
 later. Planning a write-up on my improvements to the Vim blogging client
 I posted about earlier\... (tags are working as you can see!)
 

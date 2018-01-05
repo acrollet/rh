@@ -16,7 +16,7 @@ http://reluctanthacker.rollett.org/sites/default/files/sites/default/files/drupa
 Decided I was tired of having to manually go and look at my posts after
 I was done writing them\... This [latest
 version](http://reluctanthacker.rollett.org/software/drupavim) will open
-the post under your cursor in your default browser when you type \'o\'.
+the post under your cursor in your default browser when you type 'o'.
 whoo! Tested and working on mac os x, could be dodgier on linux/windoze
 - leave a comment if you have trouble\...
 

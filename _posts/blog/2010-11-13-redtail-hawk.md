@@ -14,7 +14,7 @@ Taken with our [Pentax
 k-x](http://www.amazon.com/gp/product/B002OEBTC8?ie=UTF8&tag=thereluhack-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B002OEBTC8)
 & [DA
 55-300mm](http://www.amazon.com/gp/product/B0012QCYNM?ie=UTF8&tag=thereluhack-20&linkCode=as2&camp=1789&creative=390957&creativeASIN=B0012QCYNM)
-lens. Click \'read more\' to see the slideshow\...
+lens. Click 'read more' to see the slideshow\...
 
 
 

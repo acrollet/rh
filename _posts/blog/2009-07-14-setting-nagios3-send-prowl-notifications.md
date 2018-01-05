@@ -8,16 +8,16 @@ permalink: /content/setting-nagios3-send-prowl-notifications
 
 
 
-*Updated 27.i.2010 to reflect mig5\'s corrections*
+*Updated 27.i.2010 to reflect mig5's corrections*
 
 I spent a few minutes today setting up our nagios install at work to
 page me via [prowl](http://prowl.weks.net/), instead of an email-\>sms
-gateway. Why? Because I\'m cheap, that\'s why - don\'t like paying for
+gateway. Why? Because I'm cheap, that's why - don't like paying for
 any more texts than I must. I ran into a few gotchas, so I thought I
 would briefly document the process.
 
 First, you must download the perl script that will send prowl
-notifications.\
+notifications.
 
 
 ``` sh
@@ -28,7 +28,7 @@ sudo</a> chmod +x /usr/local/bin/prowl.pl
 ```
 
 Next, you will have to install the Crypt::SSLeay and LWP::UserAgent
-library for perl, so it can access https URLs.\
+library for perl, so it can access https URLs.
 
 
 ``` sh
@@ -48,11 +48,11 @@ Now, try it out to be sure it works:
 ```
 
 
-You should get a \'Notification successfully posted.\' message. (and a
-popup on your phone, of course!) If the script isn\'t working, you\'ll
+You should get a 'Notification successfully posted.' message. (and a
+popup on your phone, of course!) If the script isn't working, you'll
 have to figure out the reason, because nagios depends on it.
 
-Once you\'ve ironed all that out, it\'s time to configure nagios!
+Once you've ironed all that out, it's time to configure nagios!
 
 First, you need to set up your contact information. Edit whichever file
 you keep your contacts in, and modify an existing record, or add a new
@@ -74,10 +74,10 @@ define contact{
 ```
 
 It is very important that you leave the underscore in front of the
-\_prowl\_apikey variable, as Nagios\' custom variables [depend on
+\_prowl\_apikey variable, as Nagios' custom variables [depend on
 it](http://nagios.sourceforge.net/docs/3_0/customobjectvars.html).
 
-Next, you\'ll need to add the custom prowl notification commands. Edit
+Next, you'll need to add the custom prowl notification commands. Edit
 the appropriate file, and add these commands:
 
 
@@ -94,10 +94,10 @@ define command{
 ```
 
 
-If your perl binary doesn\'t live in /usr/bin, be sure to give the
-correct path. (run \'which perl\' to find this out if you don\'t know)
+If your perl binary doesn't live in /usr/bin, be sure to give the
+correct path. (run 'which perl' to find this out if you don't know)
 If you try to run the prowl.pl script directly, (without using the
-system perl binary) nagios uses its own perl interpreter, and you\'ll
+system perl binary) nagios uses its own perl interpreter, and you'll
 get an error similar to this in the nagios logs:
 
 
@@ -107,7 +107,7 @@ get an error similar to this in the nagios logs:
 
 
 If you have any trouble, check the nagios debug logs, (you may need to
-turn up the nagios debug level) and try to run the command it\'s
+turn up the nagios debug level) and try to run the command it's
 producing as the nagios user.
 
 
