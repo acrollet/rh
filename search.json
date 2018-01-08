@@ -591,10 +591,12 @@
   
 
   
+
+  
     ,{
-      "title"			: "about the reluctant hacker",
-      "link"			: "http://reluctanthacker.rollett.org/about/",
-      "excerpt"		: ""
+      "title"			: "Theme Setup",
+      "link"			: "http://reluctanthacker.rollett.org/theme-setup/",
+      "excerpt"		: "Instructions on how to install and customize the Jekyll theme So Simple."
     }
   
 
@@ -605,12 +607,10 @@
   
 
   
-
-  
     ,{
-      "title"			: "Theme Setup",
-      "link"			: "http://reluctanthacker.rollett.org/theme-setup/",
-      "excerpt"		: "Instructions on how to install and customize the Jekyll theme So Simple."
+      "title"			: "about the reluctant hacker",
+      "link"			: "http://reluctanthacker.rollett.org/about/",
+      "excerpt"		: ""
     }
   
 
