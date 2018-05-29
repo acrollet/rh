@@ -5,8 +5,6 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 {% include head.html %}
-<div class="g-recaptcha" data-sitekey="6Ld5E1wUAAAAAJz-Ur9YaEEatcYTmWbTdoeA-GPx"></div>
-<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body id="post">
@@ -65,6 +63,8 @@
           <label><input name="fields[name]" type="text">Name</label>
           <label><input name="fields[email]" type="email">E-mail</label>
           <label><textarea name="fields[message]"></textarea>Message</label>
+          <div class="g-recaptcha" data-sitekey="6Ld5E1wUAAAAAJz-Ur9YaEEatcYTmWbTdoeA-GPx"></div>
+          <script src='https://www.google.com/recaptcha/api.js'></script>
           <button type="submit">Post Comment</button>
         </form>
         {% if site.owner.disqus-shortname and page.comments or site.comments %}
