@@ -83,6 +83,8 @@ comment form, hope this makes it easier to leave comments!
 <!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://reluctanthacker.rollett.org/images/apple-touch-icon-144x144-precomposed.png">
 
+<div class="g-recaptcha" data-sitekey="6Ld5E1wUAAAAAJz-Ur9YaEEatcYTmWbTdoeA-GPx"></div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body id="post">
@@ -174,6 +176,8 @@ comment form, hope this makes it easier to leave comments!</p>
         
         <hr>
         <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
+          <input type="hidden" name="options[reCaptcha][siteKey]" value="6Ld5E1wUAAAAAJz-Ur9YaEEatcYTmWbTdoeA-GPx">
+          <input type="hidden" name="options[reCaptcha][secret]" value="ZwQ9LM6iGXmuJZIWn82+vUKy4eLCwwSC1x1C8ZbzJ53wiCeIHA5vzN/R6xx1J8FX/b9/YW8utLVBC1o6d7sHAgimXkrJ9Rft0MRJh4GcOFyg6TmgMJQ/jKX0aBBUUHxu6WVSGHcsLyDv+uAwYLFyXy+ErBmXzjQTquPbIOKfrmQ=">
           <input name="options[redirect]" type="hidden" value="http://reluctanthacker.rollett.org">
           <input name="options[slug]" type="hidden" value="commenting">
           <label><input name="fields[name]" type="text">Name</label>
