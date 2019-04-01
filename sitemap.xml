@@ -296,7 +296,10 @@
 <loc>http://reluctanthacker.rollett.org/</loc>
 </url>
 <url>
-<loc>http://reluctanthacker.rollett.org/about/</loc>
+<loc>http://reluctanthacker.rollett.org/tags/</loc>
+</url>
+<url>
+<loc>http://reluctanthacker.rollett.org/theme-setup/</loc>
 </url>
 <url>
 <loc>http://reluctanthacker.rollett.org/articles/</loc>
@@ -305,13 +308,10 @@
 <loc>http://reluctanthacker.rollett.org/blog/</loc>
 </url>
 <url>
-<loc>http://reluctanthacker.rollett.org/tags/</loc>
-</url>
-<url>
-<loc>http://reluctanthacker.rollett.org/theme-setup/</loc>
+<loc>http://reluctanthacker.rollett.org/about/</loc>
 </url>
 <url>
 <loc>http://reluctanthacker.rollett.org/sites/default/files/stats.html</loc>
-<lastmod>2018-05-29T13:31:59+00:00</lastmod>
+<lastmod>2019-04-01T15:51:08+00:00</lastmod>
 </url>
 </urlset>
