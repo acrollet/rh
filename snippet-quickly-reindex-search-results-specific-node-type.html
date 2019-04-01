@@ -137,7 +137,7 @@
       <div class="entry-content">
         <p>Had the need to do this, saving the snippet here.</p>
 
-<div class="language-php highlighter-rouge"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
 <span class="nv">$query</span> <span class="o">=</span> <span class="nx">db_select</span><span class="p">(</span><span class="s1">'node'</span><span class="p">,</span> <span class="s1">'n'</span><span class="p">)</span>
           <span class="o">-&gt;</span><span class="na">fields</span><span class="p">(</span><span class="s1">'n'</span><span class="p">,</span> <span class="k">array</span><span class="p">(</span><span class="s1">'nid'</span><span class="p">))</span>
@@ -147,8 +147,7 @@
 <span class="k">while</span> <span class="p">(</span><span class="nv">$record</span> <span class="o">=</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="na">fetchObject</span><span class="p">())</span> <span class="p">{</span>
   <span class="nx">_node_index_node</span><span class="p">(</span><span class="nv">$record</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
         
         <hr>

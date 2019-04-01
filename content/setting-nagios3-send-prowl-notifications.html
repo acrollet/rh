@@ -146,29 +146,26 @@ would briefly document the process.</p>
 <p>First, you must download the perl script that will send prowl
 notifications.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>sudo mkdir -p /usr/local/bin
-sudo wget -O /usr/local/bin/prowl.pl &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">"http://prowl.weks.net/static/prowl.pl
-sudo"</span>&gt;http://prowl.weks.net/static/prowl.pl
-<span class="gp">sudo&lt;/a&gt; </span>chmod +x /usr/local/bin/prowl.pl
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo mkdir</span> <span class="nt">-p</span> /usr/local/bin
+<span class="nb">sudo </span>wget <span class="nt">-O</span> /usr/local/bin/prowl.pl &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">"http://prowl.weks.net/static/prowl.pl
+sudo"</span><span class="o">&gt;</span>http://prowl.weks.net/static/prowl.pl
+<span class="nb">sudo</span>&lt;/a&gt; <span class="nb">chmod</span> +x /usr/local/bin/prowl.pl
+</code></pre></div></div>
 
 <p>Next, you will have to install the Crypt::SSLeay and LWP::UserAgent
 library for perl, so it can access https URLs.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="c"># If you're running debian/ubuntu</span>
-sudo apt-get update; sudo apt-get install libcrypt-ssleay-perl liblwp-useragent-determined-perl
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># If you're running debian/ubuntu</span>
+<span class="nb">sudo </span>apt-get update<span class="p">;</span> <span class="nb">sudo </span>apt-get <span class="nb">install </span>libcrypt-ssleay-perl liblwp-useragent-determined-perl
 <span class="c"># otherwise find a package for your distro, or run:</span>
 <span class="c"># sudo cpan install Crypt::SSLeay</span>
 <span class="c"># sudo cpan install LWP::UserAgent</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Now, try it out to be sure it works:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>/usr/local/bin/prowl.pl -apikey<span class="o">=</span><span class="s1">'yourAPIkeyHere'</span> -application<span class="o">=</span><span class="s1">'prowl.pl'</span> -event<span class="o">=</span><span class="s1">'test'</span> -notification<span class="o">=</span><span class="s1">'mic check 1 2'</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/bin/prowl.pl <span class="nt">-apikey</span><span class="o">=</span><span class="s1">'yourAPIkeyHere'</span> <span class="nt">-application</span><span class="o">=</span><span class="s1">'prowl.pl'</span> <span class="nt">-event</span><span class="o">=</span><span class="s1">'test'</span> <span class="nt">-notification</span><span class="o">=</span><span class="s1">'mic check 1 2'</span>
+</code></pre></div></div>
 
 <p>You should get a ‘Notification successfully posted.’ message. (and a
 popup on your phone, of course!) If the script isn’t working, you’ll
@@ -180,7 +177,7 @@ have to figure out the reason, because nagios depends on it.</p>
 you keep your contacts in, and modify an existing record, or add a new
 one, similar to this:</p>
 
-<div class="language-perl highlighter-rouge"><pre class="highlight"><code><span class="nv">define</span> <span class="nv">contact</span><span class="p">{</span>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">define</span> <span class="nv">contact</span><span class="p">{</span>
     <span class="nv">contact_name</span>                    <span class="nv">adrian_pager</span>
     <span class="nv">alias</span>                           <span class="nv">Adrian</span> <span class="nv">Rollett</span>
     <span class="nv">service_notification_period</span>     <span class="mi">24</span><span class="nv">x7</span>
@@ -191,8 +188,7 @@ one, similar to this:</p>
     <span class="nv">host_notification_commands</span>      <span class="nv">notify</span><span class="o">-</span><span class="nv">host</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">prowl</span>
     <span class="nv">_prowl_apikey</span>                   <span class="nv">yourAPIkeyGoesHere</span>
     <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>It is very important that you leave the underscore in front of the
 _prowl_apikey variable, as Nagios’ custom variables <a href="http://nagios.sourceforge.net/docs/3_0/customobjectvars.html">depend on
@@ -201,17 +197,16 @@ it</a>.</p>
 <p>Next, you’ll need to add the custom prowl notification commands. Edit
 the appropriate file, and add these commands:</p>
 
-<div class="language-perl highlighter-rouge"><pre class="highlight"><code><span class="nv">define</span> <span class="nv">command</span><span class="p">{</span>
+<div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">define</span> <span class="nv">command</span><span class="p">{</span>
         <span class="nv">command_name</span> <span class="nv">notify</span><span class="o">-</span><span class="nv">host</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">prowl</span>
-        <span class="nv">command_line</span> <span class="sr">/usr/</span><span class="nv">bin</span><span class="sr">/perl -w /</span><span class="nv">usr</span><span class="sr">/local/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">prowl</span><span class="o">.</span><span class="nv">pl</span> <span class="o">-</span><span class="nv">apikey</span><span class="o">=</span><span class="s">"$_CONTACTPROWL_APIKEY$"</span> <span class="o">-</span><span class="nv">priority</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="nv">application</span><span class="o">=</span><span class="s">"Nagios"</span> <span class="o">-</span><span class="nv">event</span><span class="o">=</span><span class="s">"Host"</span> <span class="o">-</span><span class="nv">notification</span><span class="o">=</span><span class="s">"$HOSTNAME$ $HOSTDESC$ '$HOSTOUTPUT$'"</span>
+        <span class="nv">command_line</span> <span class="sr">/usr/</span><span class="nv">bin</span><span class="sr">/perl -w /us</span><span class="nv">r</span><span class="sr">/local/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">prowl</span><span class="o">.</span><span class="nv">pl</span> <span class="o">-</span><span class="nv">apikey</span><span class="o">=</span><span class="s">"$_CONTACTPROWL_APIKEY$"</span> <span class="o">-</span><span class="nv">priority</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="nv">application</span><span class="o">=</span><span class="s">"Nagios"</span> <span class="o">-</span><span class="nv">event</span><span class="o">=</span><span class="s">"Host"</span> <span class="o">-</span><span class="nv">notification</span><span class="o">=</span><span class="s">"$HOSTNAME$ $HOSTDESC$ '$HOSTOUTPUT$'"</span>
 <span class="p">}</span>
  
 <span class="nv">define</span> <span class="nv">command</span><span class="p">{</span>
         <span class="nv">command_name</span> <span class="nv">notify</span><span class="o">-</span><span class="nv">service</span><span class="o">-</span><span class="nv">by</span><span class="o">-</span><span class="nv">prowl</span>
-        <span class="nv">command_line</span> <span class="sr">/usr/</span><span class="nv">bin</span><span class="sr">/perl -w /</span><span class="nv">usr</span><span class="sr">/local/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">prowl</span><span class="o">.</span><span class="nv">pl</span> <span class="o">-</span><span class="nv">apikey</span><span class="o">=</span><span class="s">"$_CONTACTPROWL_APIKEY$"</span> <span class="o">-</span><span class="nv">priority</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="nv">application</span><span class="o">=</span><span class="s">"Nagios"</span> <span class="o">-</span><span class="nv">event</span><span class="o">=</span><span class="s">"Service"</span> <span class="o">-</span><span class="nv">notification</span><span class="o">=</span><span class="s">"$HOSTNAME$ $SERVICEDESC$ '$SERVICEOUTPUT$'"</span>
+        <span class="nv">command_line</span> <span class="sr">/usr/</span><span class="nv">bin</span><span class="sr">/perl -w /us</span><span class="nv">r</span><span class="sr">/local/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">prowl</span><span class="o">.</span><span class="nv">pl</span> <span class="o">-</span><span class="nv">apikey</span><span class="o">=</span><span class="s">"$_CONTACTPROWL_APIKEY$"</span> <span class="o">-</span><span class="nv">priority</span><span class="o">=</span><span class="mi">1</span> <span class="o">-</span><span class="nv">application</span><span class="o">=</span><span class="s">"Nagios"</span> <span class="o">-</span><span class="nv">event</span><span class="o">=</span><span class="s">"Service"</span> <span class="o">-</span><span class="nv">notification</span><span class="o">=</span><span class="s">"$HOSTNAME$ $SERVICEDESC$ '$SERVICEOUTPUT$'"</span>
 <span class="p">}</span>
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>If your perl binary doesn’t live in /usr/bin, be sure to give the
 correct path. (run ‘which perl’ to find this out if you don’t know)
@@ -219,9 +214,8 @@ If you try to run the prowl.pl script directly, (without using the
 system perl binary) nagios uses its own perl interpreter, and you’ll
 get an error similar to this in the nagios logs:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="k">*</span>ePN failed to compile /usr/local/bin/prowl.pl: <span class="s2">"Missing right curly or square bracket at (eval 1) line 95, at end of line syntax error at (eval 1) line 102, at EOF"</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">*</span>ePN failed to compile /usr/local/bin/prowl.pl: <span class="s2">"Missing right curly or square bracket at (eval 1) line 95, at end of line syntax error at (eval 1) line 102, at EOF"</span>
+</code></pre></div></div>
 
 <p>If you have any trouble, check the nagios debug logs, (you may need to
 turn up the nagios debug level) and try to run the command it’s

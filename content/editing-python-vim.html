@@ -161,12 +161,11 @@ completion and
 quite nice. Also did my own hacky perversion of the :make command.
 .vimrc excerpt follows...</p>
 
-<div class="language-viml highlighter-rouge"><pre class="highlight"><code><span class="c">" py stuff</span>
+<div class="language-viml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">" py stuff</span>
 autocmd <span class="nb">BufRead</span> *<span class="p">.</span><span class="k">py</span> <span class="k">set</span> smartindent cinwords<span class="p">=</span><span class="k">if</span><span class="p">,</span>elif<span class="p">,</span><span class="k">else</span><span class="p">,</span><span class="k">for</span><span class="p">,</span><span class="k">while</span><span class="p">,</span><span class="k">try</span><span class="p">,</span>except<span class="p">,</span><span class="k">finally</span><span class="p">,</span>def<span class="p">,</span>class
 autocmd <span class="nb">FileType</span> python <span class="k">set</span> omnifunc<span class="p">=</span>pythoncomplete#Complete
 autocmd <span class="nb">FileType</span> python <span class="k">set</span> makeprg<span class="p">=</span>python\ %
-</code></pre>
-</div>
+</code></pre></div></div>
 
         
         <hr>

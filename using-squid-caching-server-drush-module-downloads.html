@@ -151,9 +151,8 @@ depending on your experience/OS.</p>
 
 <p>Installation was super-simple. (gotta love apt)</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>apt-get install squid3
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>apt-get <span class="nb">install </span>squid3
+</code></pre></div></div>
 
 <p>Configuration was also quite simple. Basically, the debian package for
 squid is setup fairly nicely as a proxy caching server out of the box,
@@ -161,33 +160,29 @@ and you need only configure access. First, add an acl in
 /etc/squid3/squid.conf for your local network, something like the
 following:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>acl localnet src 192.168.0.0/16 <span class="c"># RFC1918 possible internal network</span>
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>acl localnet src 192.168.0.0/16 <span class="c"># RFC1918 possible internal network</span>
+</code></pre></div></div>
 
 <p>(make sure to change the subnet to match your network) Next, add a rule
 allowing access from the local network you just defined:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>http_access allow localnet
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>http_access allow localnet
+</code></pre></div></div>
 
 <p>(If your squid server is on the same box as your drush installation, you
 just need to allow localhost)</p>
 
 <p>Restart squid, and away you go.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>/etc/init.d/squid3 restart
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/init.d/squid3 restart
+</code></pre></div></div>
 
 <h2 id="using-drush-with-squid">Using drush with squid</h2>
 
 <p>To make drush use squid, simply do the following:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="nv">http_proxy</span><span class="o">=</span><span class="s2">"http://squid-host.example.com:3128/"</span> php /usr/local/drush/drush.php dl cck
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">http_proxy</span><span class="o">=</span><span class="s2">"http://squid-host.example.com:3128/"</span> php /usr/local/drush/drush.php dl cck
+</code></pre></div></div>
 
 <p>(You’ll probably want to add an alias)</p>
 
@@ -196,20 +191,18 @@ just need to allow localhost)</p>
 <p>Let’s try and download the
 <a href="http://drupal.org/project/inlinetags">inlinetags</a> module.</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code>drush-host <span class="c"># http_proxy="&lt;a href="http://squid-host.example.com:3128/""&gt;http://squid-host.example.com:3128/"&lt;/a&gt; php /usr/local/drush/drush.php dl inlinetags</span>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>drush-host <span class="c"># http_proxy="&lt;a href="http://squid-host.example.com:3128/""&gt;http://squid-host.example.com:3128/"&lt;/a&gt; php /usr/local/drush/drush.php dl inlinetags</span>
 squid-host <span class="c"># tail -f /var/log/squid3</span>
-1267120330.674    273 192.168.208.29 TCP_MISS/200 8952 GET &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">"http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz"</span>&gt;http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz&lt;/a&gt; - DIRECT/140.211.166.142 application/x-gzip
-</code></pre>
-</div>
+1267120330.674    273 192.168.208.29 TCP_MISS/200 8952 GET &lt;a <span class="nv">href</span><span class="o">=</span><span class="s2">"http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz"</span><span class="o">&gt;</span>http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz&lt;/a&gt; - DIRECT/140.211.166.142 application/x-gzip
+</code></pre></div></div>
 
 <p>So, we can tell from the log that the request came into squid, but did
 not find the object cached. So far so good. Let’s try again:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>drush-host # http_proxy="&lt;a href="http://squid-host.example.com:3128/""&gt;http://squid-host.example.com:3128/"&lt;/a&gt; php /usr/local/drush/drush.php dl inlinetags
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>drush-host # http_proxy="&lt;a href="http://squid-host.example.com:3128/""&gt;http://squid-host.example.com:3128/"&lt;/a&gt; php /usr/local/drush/drush.php dl inlinetags
 squid-host # tail -f /var/log/squid3
 1267121152.216      0 192.168.208.29 TCP_HIT/200 8960 GET &lt;a href="http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz"&gt;http://ftp.drupal.org/files/projects/inlinetags-6.x-1.1.tar.gz&lt;/a&gt; - NONE/- application/x-gzip
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Good news! This time the request never went out to drupal.org. That’s
 all I have for now, hope it helps someone. Please feel free to comment

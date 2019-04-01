@@ -145,21 +145,20 @@ making it much easier to update in the future.
 quite old. Here is a bash "few-liner" to migrate an install to CVS,
 making it much easier to update in the future.</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>your_drupal_dir
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd </span>your_drupal_dir
 <span class="c"># replace DRUPAL-6-12 with the appropriate version tag</span>
-cvs -z6 -d :pserver:anonymous:anonymous@cvs.drupal.org:/cvs/drupal checkout -r DRUPAL-6-12 new_drupal
-rm -rf new_drupal/sites
-mkdir old_drupal
-<span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span>ls drupal<span class="sb">`</span>; <span class="k">do
-  </span>mv <span class="nv">$i</span> old_drupal
-  mv drupal/<span class="nv">$i</span> .
+cvs <span class="nt">-z6</span> <span class="nt">-d</span> :pserver:anonymous:anonymous@cvs.drupal.org:/cvs/drupal checkout <span class="nt">-r</span> DRUPAL-6-12 new_drupal
+<span class="nb">rm</span> <span class="nt">-rf</span> new_drupal/sites
+<span class="nb">mkdir </span>old_drupal
+<span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span><span class="nb">ls </span>drupal<span class="sb">`</span><span class="p">;</span> <span class="k">do
+  </span><span class="nb">mv</span> <span class="nv">$i</span> old_drupal
+  <span class="nb">mv </span>drupal/<span class="nv">$i</span> <span class="nb">.</span>
 <span class="k">done</span>
 <span class="c"># if you have drush</span>
 drush updatedb
 <span class="c"># make sure everything's working, then</span>
-rm -rf old_drupal
-</code></pre>
-</div>
+<span class="nb">rm</span> <span class="nt">-rf</span> old_drupal
+</code></pre></div></div>
 
 <p>Standard disclaimers apply, hope this helps some people!</p>
 

@@ -144,14 +144,13 @@ across over the past couple of days, to wit:</p>
 <p>if you give chown a user with a trailing colon, it will automatically
 use that user’s default group. ex:</p>
 
-<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">root@rollett:~/blog# </span>touch t
-<span class="gp">root@rollett:~/blog# </span>ls -l t
--rw-r--r-- 1 root root 0 Feb 23 22:21 t
-<span class="gp">root@rollett:~/blog# </span>chown www-data: t
-<span class="gp">root@rollett:~/blog# </span>ls -l t
--rw-r--r-- 1 www-data www-data 0 Feb 23 22:21 t
-</code></pre>
-</div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>root@rollett:~/blog# <span class="nb">touch </span>t
+root@rollett:~/blog# <span class="nb">ls</span> <span class="nt">-l</span> t
+<span class="nt">-rw-r--r--</span> 1 root root 0 Feb 23 22:21 t
+root@rollett:~/blog# <span class="nb">chown </span>www-data: t
+root@rollett:~/blog# <span class="nb">ls</span> <span class="nt">-l</span> t
+<span class="nt">-rw-r--r--</span> 1 www-data www-data 0 Feb 23 22:21 t
+</code></pre></div></div>
 
 <p><a href="http://pinfo.sourceforge.net/">Pinfo</a> is a more user-friendly <a href="http://www.gnu.org/software/texinfo/">info
 file</a> reader/browser. The jk keys

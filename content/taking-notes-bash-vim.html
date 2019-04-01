@@ -169,48 +169,46 @@ searching and command line tab completion, and vim for editing. I liked
 it a lot, but decided to add tagging to the system. Read on to find out
 how I did it.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>host:~ $ note testnote
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>host:~ $ note testnote
+</code></pre></div></div>
 
 <p><img src="http://reluctanthacker.rollett.org/sites/default/files/images/Picture%2012.png" alt="" /></p>
 
 <p>(:xa will save all buffers and quit in one swell foop)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>host:~ $ findnote note
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>host:~ $ findnote note
 /Users/acrollet/.notes/test note.note
 1:This is a test note.
 
 host:~ $ findtag bash
 /Users/acrollet/.notes/test note.tags
 1:bash vi note-taking
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>The bash file to do the above looks like this:</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code>note<span class="o">()</span> <span class="o">{</span>
-  <span class="k">if</span> <span class="o">[</span> -n <span class="s2">"</span><span class="nv">$*</span><span class="s2">"</span> <span class="o">]</span>; <span class="k">then
-    </span>mvim -o2 <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.note"</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.tags"</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>note<span class="o">()</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">[</span> <span class="nt">-n</span> <span class="s2">"</span><span class="nv">$*</span><span class="s2">"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span>mvim <span class="nt">-o2</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.note"</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.tags"</span>
   <span class="k">else
     </span><span class="nb">printf</span> <span class="s2">"Name of note is a required argument.</span><span class="se">\n</span><span class="s2">"</span>
   <span class="k">fi</span>
 <span class="o">}</span>
  
 findnote<span class="o">()</span> <span class="o">{</span>
-  ack -ia <span class="nv">$1</span> ~/.notes/<span class="k">*</span>.note
+  ack <span class="nt">-ia</span> <span class="nv">$1</span> ~/.notes/<span class="k">*</span>.note
 <span class="o">}</span>
  
 shownote<span class="o">()</span> <span class="o">{</span>
-  cat <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.note"</span>
+  <span class="nb">cat</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.note"</span>
 <span class="o">}</span>
  
 findtag<span class="o">()</span> <span class="o">{</span>
-  ack -ia <span class="nv">$1</span> ~/.notes/<span class="k">*</span>.tags
+  ack <span class="nt">-ia</span> <span class="nv">$1</span> ~/.notes/<span class="k">*</span>.tags
 <span class="o">}</span>
  
 copynote<span class="o">()</span> <span class="o">{</span>
-  cat <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.note"</span> | pbcopy
+  <span class="nb">cat</span> <span class="s2">"</span><span class="nv">$HOME</span><span class="s2">/.notes/</span><span class="nv">$*</span><span class="s2">.note"</span> | pbcopy
 <span class="o">}</span>
  
 <span class="nb">alias </span>note:<span class="o">=</span><span class="s1">'note'</span>
@@ -221,31 +219,29 @@ _notes<span class="o">()</span> <span class="o">{</span>
   <span class="nb">local </span>cur names IFS
  
   <span class="nv">cur</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">COMP_WORDS</span><span class="p">[COMP_CWORD]</span><span class="k">}</span><span class="s2">"</span>
-  <span class="nv">names</span><span class="o">=</span><span class="sb">`</span>ls <span class="nv">$HOME</span>/.notes | sed <span class="s1">'s/.note$//g'</span><span class="sb">`</span>
-  <span class="nv">IFS</span><span class="o">=</span><span class="nv">$'</span><span class="se">\t\n</span><span class="s1">'
+  <span class="nv">names</span><span class="o">=</span><span class="sb">`</span><span class="nb">ls</span> <span class="nv">$HOME</span>/.notes | <span class="nb">sed</span> <span class="s1">'s/.note$//g'</span><span class="sb">`</span>
+  <span class="nv">IFS</span><span class="o">=</span><span class="s1">$'</span><span class="se">\t\n</span><span class="s1">'</span>
  
-  COMPREPLY=( $(compgen -W "${names}" -- ${cur}) )
-  return 0
-}
-complete -o nospace -F _notes note
-complete -o nospace -F _notes note:
-complete -o nospace -F _notes copynote
-</span></code></pre>
-</div>
+  <span class="nv">COMPREPLY</span><span class="o">=(</span> <span class="k">$(</span><span class="nb">compgen</span> <span class="nt">-W</span> <span class="s2">"</span><span class="k">${</span><span class="nv">names</span><span class="k">}</span><span class="s2">"</span> <span class="nt">--</span> <span class="k">${</span><span class="nv">cur</span><span class="k">})</span> <span class="o">)</span>
+  <span class="k">return </span>0
+<span class="o">}</span>
+<span class="nb">complete</span> <span class="nt">-o</span> nospace <span class="nt">-F</span> _notes note
+<span class="nb">complete</span> <span class="nt">-o</span> nospace <span class="nt">-F</span> _notes note:
+<span class="nb">complete</span> <span class="nt">-o</span> nospace <span class="nt">-F</span> _notes copynote
+</code></pre></div></div>
 
 <p>Now, here’s the other piece. Put this in your .vimrc:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>let g:netrw_hide=1
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>let g:netrw_hide=1
 let g:netrw_list_hide='\.tags$,^\..*'
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>And this in
 <a href="http://www.vim.org/scripts/script.php?script_id=1075">netrwFileHandlers.vim</a>:
 (you may need a more recent version than came with your distribution,
 v98 did not work for me)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>" ---------------------------------------------------------------------
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>" ---------------------------------------------------------------------
 "
 " s:NFH_note: handles note file when the user hits "x" when the \{\{\{1
 "                        cursor is atop a *.note file
@@ -261,8 +257,7 @@ fun! s:NFH_note(notefile)
    execute "sp "note
    return 0
 endfun
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Now, when you type ‘notes’ at the prompt, you’ll get this view:</p>
 

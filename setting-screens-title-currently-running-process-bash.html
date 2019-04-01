@@ -175,7 +175,7 @@ that gave me the key. An extremely clever use of a trap will let you
 emulate zsh’s preexec function and run whatever you like just before
 each command is executed. Here’s how I modified his code:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>case "$TERM" in
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>case "$TERM" in
   screen)
       set -o functrace
       trap 'echo -ne "\ek\$:${BASH_COMMAND:0:20}\e\\"' DEBUG
@@ -184,8 +184,7 @@ each command is executed. Here’s how I modified his code:</p>
   *)
     ;;
 esac
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Finally, here’s the obligatory screenshot.</p>
 

@@ -185,16 +185,15 @@ quick wrapper script to provide mutt with a 0 exit status instead of the
 from spitting out the ‘press any key to continue’ message and
 requiring an EXTRA KEYSTROKE. (picky, picky...)</p>
 
-<div class="language-bash highlighter-rouge"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/bash</span>
 <span class="nv">QLFILE</span><span class="o">=</span><span class="nv">$1</span>
  
 <span class="c"># we have to trap ctrl-c so that a successful exit signal will be given,</span>
 <span class="c"># so that mutt won't prompt us to press any key to continue</span>
 <span class="nb">trap</span> <span class="s1">'exit 0'</span> 2 <span class="c">#traps Ctrl-C (signal 2)</span>
  
-qlmanage -p <span class="nv">$QLFILE</span> &gt;&amp; /dev/null
-</code></pre>
-</div>
+qlmanage <span class="nt">-p</span> <span class="nv">$QLFILE</span> <span class="o">&gt;</span>&amp; /dev/null
+</code></pre></div></div>
 
 <p>A little adjustment in ~/.mailcap, and away you go... Here’s an
 example of one of the very important images that it’s vital I see in my
