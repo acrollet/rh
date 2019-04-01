@@ -55,6 +55,7 @@
           {% endfor %}
         {% endif %}
         <hr>
+        <!--
         <form method="POST" action="https://api.staticman.net/v2/entry/acrollet/rh/master/comments">
           <input type="hidden" name="options[reCaptcha][siteKey]" value="6Ld5E1wUAAAAAJz-Ur9YaEEatcYTmWbTdoeA-GPx">
           <input type="hidden" name="options[reCaptcha][secret]" value="ZwQ9LM6iGXmuJZIWn82+vUKy4eLCwwSC1x1C8ZbzJ53wiCeIHA5vzN/R6xx1J8FX/b9/YW8utLVBC1o6d7sHAgimXkrJ9Rft0MRJh4GcOFyg6TmgMJQ/jKX0aBBUUHxu6WVSGHcsLyDv+uAwYLFyXy+ErBmXzjQTquPbIOKfrmQ=">
@@ -67,6 +68,7 @@
           <script src='https://www.google.com/recaptcha/api.js'></script>
           <input type="submit">Post Comment</input>
         </form>
+        -->
         {% if site.owner.disqus-shortname and page.comments or site.comments %}
           <div id="disqus_thread"></div><!-- /#disqus_thread -->
           {% include disqus-comments.html %}
